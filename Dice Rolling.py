@@ -1,8 +1,13 @@
 import random
 
-rolls = int(input("How mny times do you want to roll? The dice is out of 20: "))
+rolls = int(input("How many times do you want to roll? "))
+dice = int(input("Enter the number that you want the dice to be out of: "))
 
-while rolls > 0:
-    number = random.randint(1, 20)
-    print(f"Your roll was {number} {rolls}")
-    rolls -= 1
+
+if dice > 0:
+    while rolls > 0:
+        number = random.randint(1, dice)
+        print(f"Your roll was {number}")
+        rolls -= 1
+else:
+    print("Please enter a valid number greater than 0 for the dice sides.")

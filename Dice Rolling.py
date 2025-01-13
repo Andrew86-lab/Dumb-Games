@@ -3,7 +3,6 @@ import random
 rolls = int(input("How many times do you want to roll? "))
 dice = int(input("Enter the number that you want the dice to be out of: "))
 
-
 if dice > 0:
     while rolls > 0:
         number = random.randint(1, dice)

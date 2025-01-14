@@ -19,7 +19,12 @@ def roll_dice():
         
         # Validate inputs
         if rolls <= 0 or dice <= 0 or num_players <= 0:
-            result_text.insert(tk.END, "Please enter valid numbers for the number of players, rolls, and dice sides.\n")
+            if rolls <= 0:
+                result_text.insert(tk.END, "Please enter a valid number for the rolls.\n")
+            if dice <= 0:
+                result_text.insert(tk.END, "Please enter a valid number for the dice sides.\n")
+            if num_players <= 0:
+                result_text.insert(tk.END, "Please enter a valid number for the players.\n")
             return
         
         # Check if it's the right player's turn

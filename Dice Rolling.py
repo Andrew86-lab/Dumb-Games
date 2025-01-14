@@ -10,9 +10,9 @@ def roll_dice():
     try:
         # Get the number of players and rolls
         num_players = int(entry_players.get())
-        rolls = int(entry_rolls.get())  # Get the number of rolls
-        dice = int(entry_dice.get())  # Get the number of sides on the dice
-        player_turn = entry_player_turn.get().strip().lower()  # Get the player's turn input
+        rolls = int(entry_rolls.get())
+        dice = int(entry_dice.get())
+        player_turn = entry_player_turn.get().strip().lower()
         
         # Clear previous results
         result_text.delete(1.0, tk.END)
@@ -23,7 +23,7 @@ def roll_dice():
             return
         
         # Check if it's the right player's turn
-        if player_turn == f'player{current_player}':  # Check if the input matches the current player's turn
+        if player_turn == f'player{current_player}':
             results = []
             for _ in range(rolls):
                 number = random.randint(1, dice)
@@ -31,19 +31,18 @@ def roll_dice():
             
             # Display the current player's result
             result_text.insert(tk.END, "\n".join(results) + "\n")
-            result_text.yview(tk.FIRST)  # Scroll to the top after the roll
+            result_text.yview(tk.END)  # Scroll to the end after the roll
             
             # Move to the next player's turn
             current_player += 1
             if current_player > num_players:
-                result_text.insert(tk.END, "\nAll players have rolled!\n")
-                roll_button.config(state=tk.DISABLED)  # Disable the button after everyone has rolled
+                current_player = 1  # Reset to the first player for a new round
         else:
-            result_text.insert(tk.END, f"It's not Player {current_player}'s turn. Please input the correct player's turn.\n")
+            result_text.insert(tk.END, f"It's not Player {player_turn}'s turn. It's Player {current_player}'s turn.\n")
         
     except ValueError:
         result_text.insert(tk.END, "Please use numbers for all inputs.\n")
-        result_text.yview(tk.FIRST)  # Scroll to the top after error
+        result_text.yview(tk.END)  # Scroll to the end after error
 
 def reset_game():
     global current_player

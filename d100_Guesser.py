@@ -1,4 +1,5 @@
 #Created by Kai Reinhold (kaireinhold on GitHub)
+
 import random
 import sys
 import math
@@ -31,6 +32,7 @@ while True:
 """)
         player_1 = int(input("How many rolls do you think there will be, Player 1? "))
         player_2 = int(input("How many rolls do you think there will be, Player 2? "))
+        dice_to_roll = input("What type of dice would you like to roll for this game? (ex: d100, d20, d6) ")
         if version == "2":
             duplicates = input("How many duplicates do you want to allow? (Greater than 1) ")
         play = True
@@ -39,7 +41,7 @@ while True:
         sys.exit()
     
     while play == True:
-            roll("d100")
+            roll(dice_to_roll)
             if version == "1":
                 if rolls[-1] == 1:
                     if math.isclose(player_1, len(rolls), abs_tol = 10) == True and math.isclose(player_1, len(rolls), abs_tol = 10) == False:

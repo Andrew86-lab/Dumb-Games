@@ -43,7 +43,7 @@ def roll_dice():
             if current_player > num_players:
                 current_player = 1  # Reset to the first player for a new round
         else:
-            result_text.insert(tk.END, f"It's not Player {player_turn}'s turn. It's Player {current_player}'s turn.\n")
+            result_text.insert(tk.END, f"It's not Player {player_turn[-1]}'s turn. It's Player {current_player}'s turn.\n")
         
     except ValueError:
         result_text.insert(tk.END, "Please use numbers for all inputs.\n")

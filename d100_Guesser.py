@@ -20,7 +20,7 @@ def roll(di=None):
         roll_num = int(x[1:len(x)])
         roll_output = random.randint(1,roll_num)
         output_str = str(roll_output)
-        return rolls.append(roll_output)
+        rolls.append(roll_output)
 
 while True:
     rolls = []

@@ -30,11 +30,11 @@ while True:
 (1) Roll until 1 is rolled
 (2) Roll until 1 or a duplicate is rolled
 """)
-        player_1 = int(input("How many rolls do you think there will be, Player 1? "))
-        player_2 = int(input("How many rolls do you think there will be, Player 2? "))
         dice_to_roll = input("What type of dice would you like to roll for this game? (ex: d100, d20, d6) ")
         if version == "2":
             duplicates = input("How many duplicates do you want to allow? (Greater than 1) ")
+        player_1 = int(input("How many rolls do you think there will be, Player 1? "))
+        player_2 = int(input("How many rolls do you think there will be, Player 2? "))
         play = True
     else:
         play = False
@@ -44,7 +44,11 @@ while True:
             roll(dice_to_roll)
             if version == "1":
                 if rolls[-1] == 1:
-                    if math.isclose(player_1, len(rolls), abs_tol = 10) == True and math.isclose(player_1, len(rolls), abs_tol = 10) == False:
+                    if player_1 == len(rolls):
+                        print(f"Congratulations, Player 1! You guessed the number correctly! The answer was {len(rolls)}!")
+                    elif player_2 == len(rolls):
+                        print(f"Congratulations, Player 2! You guessed the number correctly! The answer was {len(rolls)}!")
+                    elif math.isclose(player_1, len(rolls), abs_tol = 10) == True and math.isclose(player_2, len(rolls), abs_tol = 10) == False:
                         print(f"Congratulations, Player 1! You were within 10 of the answer! Player 1 guessed {player_1}, Player 2 guessed {player_2}, and the answer was {len(rolls)}!")
                         print(rolls)
                     elif math.isclose(player_2, len(rolls), abs_tol = 10) == True and math.isclose(player_1, len(rolls), abs_tol = 10) == False:
@@ -66,7 +70,11 @@ while True:
                     break
             elif version == "2":
                 if rolls[-1] == 1:
-                    if math.isclose(player_1, len(rolls), abs_tol = 10) == True and math.isclose(player_2, len(rolls), abs_tol = 10) == False:
+                    if player_1 == len(rolls):
+                        print(f"Congratulations, Player 1! You guessed the number correctly! The answer was {len(rolls)}!")
+                    elif player_2 == len(rolls):
+                        print(f"Congratulations, Player 2! You guessed the number correctly! The answer was {len(rolls)}!")
+                    elif math.isclose(player_1, len(rolls), abs_tol = 10) == True and math.isclose(player_2, len(rolls), abs_tol = 10) == False:
                         print(f"Congratulations, Player 1! You were within 10 of the answer! Player 1 guessed {player_1}, Player 2 guessed {player_2}, and the answer was {len(rolls)}!")
                         print(rolls)
                     elif math.isclose(player_2, len(rolls), abs_tol = 10) == True and math.isclose(player_1, len(rolls), abs_tol = 10) == False:
@@ -88,7 +96,11 @@ while True:
                     break
                 elif rolls[-1] in rolls[0:-1]:
                     if rolls.count(rolls[-1]) >= int(duplicates):
-                        if math.isclose(player_1, len(rolls), abs_tol = 10) == True and math.isclose(player_2, len(rolls), abs_tol = 10) == False:
+                        if player_1 == len(rolls):
+                            print(f"Congratulations, Player 1! You guessed the number correctly! The answer was {len(rolls)}!")
+                        elif player_2 == len(rolls):
+                            print(f"Congratulations, Player 2! You guessed the number correctly! The answer was {len(rolls)}!")
+                        elif math.isclose(player_1, len(rolls), abs_tol = 10) == True and math.isclose(player_2, len(rolls), abs_tol = 10) == False:
                             print(f"Congratulations, Player 1! You were within 10 of the answer! Player 1 guessed {player_1}, Player 2 guessed {player_2}, and the answer was {len(rolls)}!")
                             print(rolls)
                         elif math.isclose(player_2, len(rolls), abs_tol = 10) == True and math.isclose(player_1, len(rolls), abs_tol = 10) == False:

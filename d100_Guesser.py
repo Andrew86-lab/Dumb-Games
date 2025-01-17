@@ -9,7 +9,7 @@ play = False
 def roll(di=None):
 
     if di == None:
-        dice_chosen = input("What dice would you like to roll? (d[number] ")
+        dice_chosen = input("What dice would you like to roll? (d[number]) ")
     else:
         dice_chosen = di
     dice_list = dice_chosen.lower().split()

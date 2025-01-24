@@ -15,8 +15,13 @@ user_input = get_user_input()
 
 def mutliply(user_input):
     if user_input == 1:
-        num1 = list(map(int, input("Enter the numbers you want to multiply: ").split()))
-        num1 = int(math.prod(num1))
-        print(num1)
+        while True:
+            try:     
+                num1 = list(map(float, input("Enter the numbers you want to multiply: ").split()))
+                num1 = int(math.prod(num1))
+                print(f"The answer is {num1}")
+                break
+            except ValueError:
+                print("Please enter a number instead of a whole number.")
 
 mutliply(user_input)

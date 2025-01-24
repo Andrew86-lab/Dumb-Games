@@ -18,8 +18,8 @@ def mutliply(user_input):
         while True:
             try:     
                 num1 = list(map(float, input("Enter the numbers you want to multiply: ").split()))
-                num1 = int(math.prod(num1))
-                print(f"The answer is {num1}")
+                result = (math.prod(num1))
+                print(f"The answer is {result}")
                 break
             except ValueError:
                 print("Please enter a number instead of a whole number.")

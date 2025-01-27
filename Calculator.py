@@ -96,3 +96,21 @@ def square(user_input):
                 print("Please enter a number instead of a letter or word.")
 
 square(user_input)
+
+def square_root(user_input):
+    if user_input == 5:
+        while True:
+            try:
+                num1 = input("Enter the number you want to square root: ")
+                if not num1:
+                    print("Please enter a number.")
+                    continue
+                
+                num1 = float(num1)
+                result = math.sqrt(num1)
+                print(f"The answer is {result}")
+                break
+            except ValueError:
+                print("Please enter a number instead of a letter or word.")
+
+square_root(user_input)

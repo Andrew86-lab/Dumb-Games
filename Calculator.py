@@ -3,16 +3,14 @@ import math
 def get_user_input():
     while True:
         try:
-            user_input = int(input("What do you want? 1 for Multiply, 2 for Divide, 3 for Add and Subtract, 4 for Square, 5 for Square Root, or 6 for Exponentiate? "))
-            if user_input in range(1, 7):
+            user_input = int(input("What do you want? 1 for Multiply, 2 for Divide, 3 for Add and Subtract, 4 for Square, 5 for Square Root? "))
+            if user_input in range(1, 6):
                 return user_input
             else:
-                print("Please enter a number between 1 and 6")
+                print("Please enter a number between 1 and 5")
         except ValueError:
             print("Please enter a number instead of a letter or word, please make it a whole number.")
         
-user_input = get_user_input()
-
 def mutliply(user_input):
     if user_input == 1:
         while True:
@@ -28,8 +26,6 @@ def mutliply(user_input):
                 break
             except ValueError:
                 print("Please enter a number instead of a letter or a word.")
-
-mutliply(user_input)
 
 def divide(user_input):
     if user_input == 2:
@@ -53,8 +49,6 @@ def divide(user_input):
             except ValueError:
                 print("Please enter a number instead of a letter or a word.")
 
-divide(user_input)
-
 def add_subtract(user_input):
     if user_input == 3:
         while True:
@@ -70,8 +64,6 @@ def add_subtract(user_input):
                 break
             except ValueError:
                 print("Please enter a number instead of a letter or a word.")
-
-add_subtract(user_input)
 
 def square(user_input):
     if user_input == 4:
@@ -95,8 +87,6 @@ def square(user_input):
             except ValueError:
                 print("Please enter a number instead of a letter or word.")
 
-square(user_input)
-
 def square_root(user_input):
     if user_input == 5:
         while True:
@@ -113,4 +103,15 @@ def square_root(user_input):
             except ValueError:
                 print("Please enter a number instead of a letter or word.")
 
-square_root(user_input)
+user_input = get_user_input()
+
+if user_input == 1:
+    mutliply(user_input)
+elif user_input == 2:
+    divide(user_input)
+elif user_input == 3:
+    add_subtract(user_input)
+elif user_input == 4:
+    square(user_input)
+elif user_input == 5:
+    square_root(user_input)

@@ -72,3 +72,27 @@ def add_subtract(user_input):
                 print("Please enter a number instead of a letter or a word.")
 
 add_subtract(user_input)
+
+def square(user_input):
+    if user_input == 4:
+        while True:
+            try:
+                num1 = input("Enter the number you want to square: ")
+                if not num1:
+                    print("Please enter a number.")
+                    continue
+                
+                sqrt = input("Do you want to squiare by? ")
+                if not sqrt:
+                    print("Please enter a number.")
+                    continue
+                
+                num1 = float(num1)
+                sqrt = float(sqrt)
+                result = num1 ** sqrt
+                print(f"The answer is {result}")
+                break
+            except ValueError:
+                print("Please enter a number instead of a letter or word.")
+
+square(user_input)

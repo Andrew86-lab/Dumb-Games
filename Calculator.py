@@ -17,7 +17,12 @@ def mutliply(user_input):
     if user_input == 1:
         while True:
             try:     
-                num1 = list(map(float, input("Enter the numbers you want to multiply: ").split()))
+                num1 = input("Enter the numbers you want to multiply: ").split()
+                if not num1:
+                    print("Please enter a number.")
+                    continue
+                
+                num1 = list(map(float, num1))
                 result = (math.prod(num1))
                 print(f"The answer is {result}")
                 break
@@ -30,12 +35,21 @@ def divide(user_input):
     if user_input == 2:
         while True:
             try:
-                num1 = list(map(float, input("Enter the numbers you want to divide: ").split()))
+                num1 = input("Enter the numbers you want to divide: ").split()
+                if not num1:
+                    print("Please enter a number.")
+                    continue
+                
+                num1 = list(map(float, num1))
                 first_number = num1.pop(0)
                 for x in num1:
+                    if x == 0:
+                        print("You cannot divide by zero.")
+                        break
                     first_number /=  x
-                print(f"The answer is {first_number}")
-                break
+                else:
+                    print(f"The answer is {first_number}")
+                    break
             except ValueError:
                 print("Please enter a number instead of a letter or a word.")
 
@@ -45,7 +59,12 @@ def add_subtract(user_input):
     if user_input == 3:
         while True:
             try:
-                num1 = list(map(float, input("Enter the numbers you want to add or subract: ").split()))
+                num1 = input("Enter the numbers you want to add or subract: ").split()
+                if not num1:
+                    print("Please enter a number.")
+                    continue
+                
+                num1 = list(map(float, num1))
                 result = sum(num1)
                 print(f"The answer is {result}")
                 break

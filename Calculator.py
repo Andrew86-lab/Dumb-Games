@@ -4,7 +4,7 @@ while True:
     def get_user_input():
         while True:
             try:
-                user_input = int(input("What do you want? 1 for Multiply, 2 for Divide, 3 for Add and Subtract, 4 for Square, 5 for Square Root: "))
+                user_input = int(input("What do you want? 1 for Multiply, 2 for Divide, 3 for Add and Subtract, 4 for exponentiate, 5 for Square Root: "))
                 if 1 <= user_input <= 5:
                     return user_input
                 else:
@@ -45,7 +45,7 @@ while True:
         result = sum(numbers)
         print(f"The answer is {result}")
 
-    def square():
+    def exponentiate():
         while True:
             try:
                 num1 = float(input("Enter the number you want to square: "))
@@ -76,7 +76,7 @@ while True:
         elif user_input == 3:
             add_subtract()
         elif user_input == 4:
-            square()
+            exponentiate()
         elif user_input == 5:
             square_root()
 

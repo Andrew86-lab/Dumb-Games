@@ -48,7 +48,7 @@ while True:
     def exponentiate():
         while True:
             try:
-                num1 = float(input("Enter the number you want to square: "))
+                num1 = float(input("Enter the number you want to multiply to the power of: "))
                 exponent = float(input("Enter the exponent (default is 2 for squaring): ") or 2)
                 result = num1 ** exponent
                 print(f"The answer is {result}")

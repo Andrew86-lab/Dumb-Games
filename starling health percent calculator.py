@@ -31,5 +31,5 @@ while ender != "end":
     print(f"Your current max health is now {round(current_max_hp)}.")
     print(f"Your current healh is now {round(current_hp)}.")
     print(f"Your current weight is now {current_weight} pounds.")
-    current_hp = int(input("what is your current hp (only input numbers)").lower().strip())
+    current_hp = int(input("What is your current hp: ").strip())
     ender = input("How much are you adding to the weight in pounds (negative when subtracting, 'end' when done): ").lower().strip()

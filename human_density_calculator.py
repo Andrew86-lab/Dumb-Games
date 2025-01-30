@@ -10,10 +10,3 @@ density = math.ceil(mass / volume)
 print("V:", volume, "m^3")
 print("M:", mass, "kg")
 print("D:", density, "kg/m^3")
-
-
-
-
-
-
-#This was actually a lot easier than I thought ?

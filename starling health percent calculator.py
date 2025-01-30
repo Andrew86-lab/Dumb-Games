@@ -1,7 +1,12 @@
 import math
-print("this is the health calculator")
-base_max = int(input("input your characters BASE max health "))
-base_weight = float(input("input your characters BASE weight in pounds (only type numbers) "))
+import time
+print("""This is the Health Calculator.
+Enter numbers only unless instructed otherwise.
+""")
+time.sleep(0.75)
+
+base_max = int(input("Input your character's BASE max health: "))
+base_weight = float(input("Input your character's BASE weight in pounds: "))
 
 current_max = base_max
 current_weight = base_weight
@@ -14,11 +19,11 @@ def percent_finder(weight_change):
     current_max = current_max * weight_percent
     current_weight += weight_change
     return current_max
-ender = input("how much are you adding to the weight in pounds (only type numbers input a negative when subtracting  ...  input end when done) ")
+ender = input("How much are you adding to the weight in pounds (negative when subtracting, 'end' when done): ").lower().strip()
+print(f"Your base max health is {round(base_max)}.")
+print(f"Your base weight is {base_weight} pounds.")
 while ender != "end":
     percent_finder(float(ender))
-    print("your base max health is ", base_max )
-    print("your base weight is ", base_weight)
-    print("your current max health is now", current_max)
-    print("your current weight is now ", current_weight)
-    ender = input("how much are you adding to the weight in pounds (only type numbers input a negative when subtracting  ...  input end when done) ")
+    print(f"Your current max health is now {round(current_max)}.")
+    print(f"Your current weight is now {current_weight} pounds.")
+    ender = input("How much are you adding to the weight in pounds (negative when subtracting, 'end' when done): ").lower().strip()

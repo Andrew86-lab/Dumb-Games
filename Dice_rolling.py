@@ -12,7 +12,7 @@ dice_ranges = {
 
 try:
     user_dice = input("What dice are you using? D4, D6, D8, D10, D12, D20, D100: ").lower()
-
+    print(f"Rolling a {user_dice}...")
     if user_dice in dice_ranges:
         dice = random.randint(1, dice_ranges[user_dice])
         print(f"You rolled a {dice}.")

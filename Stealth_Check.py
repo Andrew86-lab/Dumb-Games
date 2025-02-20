@@ -1,3 +1,5 @@
+# Created by Andrew86-lab
+
 import random
 
 dice = random.randint(1, 20)

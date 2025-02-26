@@ -1,9 +1,21 @@
 body {
     background-image: url(https://media.makeameme.org/created/trust-me-bro-fda09d6fe2.jpg);
-    background-size: cover;
+    font-family: sans-serif;
+    padding: 20px;
 }
 
-p {
-    font-size: 20px;
-    color: rgb(0, 0, 0);
+h1 {
+    font-size: 40px;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+.menu {
+    width: 80%;
+    background-color: rgba(137, 56, 113, .5);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    padding: 20px;
+    max-width: 500px;
 }

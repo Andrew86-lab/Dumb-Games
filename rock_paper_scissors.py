@@ -12,9 +12,9 @@ while True:
     try:
         user_input = int(input("Enter your choice (1 for Rock,2 for Paper,3 for Scissors): "))
     except ValueError:
-        print("Please enter a valid choice.")
+        print("Please enter a valid number.")
 
-    ai_choise = random.randint(1, 1)
+    ai_choise = random.randint(1, 3)
 
     choice = {
         1: "rock",

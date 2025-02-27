@@ -10,7 +10,7 @@ except ValueError:
 
 while True:
     try:
-        user_input = input("Enter your choice (Rock, Paper, Scissors): ").lower()
+        user_input = int(input("Enter your choice (1 for Rock,2 for Paper,3 for Scissors): "))
     except ValueError:
         print("Please enter a valid choice.")
 
@@ -22,18 +22,18 @@ while True:
         3: "scissors"
     }
 
-    if user_input == choice[ai_choise]:
+    if choice[user_input] == choice[ai_choise]:
         print("It's a tie!")
         user_points -= 1
         ai_points -= 1
         print(f"User points: {user_points} and AI points: {ai_points}")
-    elif user_input == "rock" and choice[ai_choise] == "scissors":
+    elif choice[user_input] == "rock" and choice[ai_choise] == "scissors":
         print("You win!")
         user_points += 1
-    elif user_input == "paper" and choice[ai_choise] == "rock":
+    elif choice[user_input] == "paper" and choice[ai_choise] == "rock":
         print("You win!")
         user_points += 1
-    elif user_input == "scissors" and choice[ai_choise] == "paper":
+    elif choice[user_input] == "scissors" and choice[ai_choise] == "paper":
         print("you win!")
         user_points += 1
     else:

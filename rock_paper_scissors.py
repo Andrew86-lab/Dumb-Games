@@ -41,11 +41,11 @@ while True:
         ai_points += 1
     
     if user_points == user_rounds and ai_points == user_rounds:
-        print("It's a tie!")
+        print(f"It's a tie! Your points: {user_points} and AI points: {ai_points}")
         break
     elif user_points == user_rounds:
-        print("You win the game!")
+        print(f"You win the game! Your points: {user_points} and AI points: {ai_points}")
         break
     else:
-        print("AI wins the game!")
+        print(f"AI wins the game! Your points: {user_points} and AI points: {ai_points}")
         break

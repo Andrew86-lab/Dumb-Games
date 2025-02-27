@@ -59,4 +59,4 @@ if user_points > ai_points:
 elif user_points < ai_points:
     print(f"AI wins the game! Final score -> You: {user_points}, AI: {ai_points}")
 else:
-    print(f"The game is a tie! Final score -> You: {user_points}, AI: {ai_points}"
+    print(f"The game is a tie! Final score -> You: {user_points}, AI: {ai_points}")

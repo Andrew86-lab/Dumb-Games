@@ -7,9 +7,9 @@ ai_points1 = 0
 ai_points2 = 0
 
 
-user_input1 = input("Do you want to play the game or watch the AI play? (Y/N)").lower()
+user_input1 = input("Do you want to play the game? (Y/N) ").lower()
 
-if user_input1 == "n":
+if user_input1 == "y":
     while True:
         try:
             user_rounds = int(input("Enter the number of rounds you want to play: "))
@@ -65,7 +65,7 @@ if user_input1 == "n":
             print(f"AI wins the game! Final score -> You: {user_points}, AI: {ai_points1}")
         else:
             print(f"The game is a tie! Final score -> You: {user_points}, AI: {ai_points1}")
-elif user_input1 == "y":
+elif user_input1 == "n":
     while True:
         try:
             user_rounds = int(input("Enter the number of rounds you want to watch: "))

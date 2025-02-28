@@ -6,7 +6,6 @@ user_points = 0
 ai_points1 = 0
 ai_points2 = 0
 
-
 user_input1 = input("Do you want to play the game? (Y/N) ").lower()
 
 if user_input1 == "y":

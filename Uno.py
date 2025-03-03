@@ -41,12 +41,23 @@ ai_hand = [deck.pop() for _ in range(7)]
 for card in player_hand + ai_hand:
     remove_from_dict(card)
 
+while True:
+    starting_card = deck.pop()
+    if starting_card[0] != "wild":
+        remove_from_dict(starting_card)
+        break
+    else:
+        deck.insert(0, starting_card)
+
 print("Your Hand:")
 for card in player_hand:
     print(card)
 
 print("\nAI's Hand: (Hidden)")
 print("[Hidden]" for _ in range(7))
+
+print("\nStarting Card:")
+print(starting_card)
 
 print("\nRemaining Cards in UNO Dictionary:")
 print(uno_cards)

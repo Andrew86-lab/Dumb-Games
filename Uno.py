@@ -1,165 +1,148 @@
 # Created by Andrewlab-86, 2/28/25
 
+# Class Definitions for UNOGame and Player go here
+
 import random
+import time
 
-# The UNO card dictionary
-uno_cards = { 
-    "red": {0: 1, **dict.fromkeys(range(1, 10), 2), "skip": 2, "reverse": 2, "draw_two": 2},
-    "yellow": {0: 1, **dict.fromkeys(range(1, 10), 2), "skip": 2, "reverse": 2, "draw_two": 2},
-    "green": {0: 1, **dict.fromkeys(range(1, 10), 2), "skip": 2, "reverse": 2, "draw_two": 2},
-    "blue": {0: 1, **dict.fromkeys(range(1, 10), 2), "skip": 2, "reverse": 2, "draw_two": 2},
-    "wild": {"wild": 4, "wild_draw_four": 4},
-}
-
-deck = []
-for color, cards in uno_cards.items():
-    for card, count in cards.items():
-        deck.extend([(color, card)] * count)
-
-random.shuffle(deck)
-
-def remove_from_dict(card):
-    color, card_type = card
-    if uno_cards[color][card_type] > 1:
-        uno_cards[color][card_type] -= 1
-    else:
-        del uno_cards[color][card_type]
-
-def is_valid_play(card, current_card):
-    return card[0] == current_card[0] or card[1] == current_card[1] or card[0] == "wild"
-
-def draw_card(hand):
-    if deck:
-        card = deck.pop()
-        remove_from_dict(card)
-        hand.append(card)
-        return card
-    return None
-
-player_hand = [draw_card([]) for _ in range(7)]
-ai_hand = [draw_card([]) for _ in range(7)]
-
-while True:
-    current_card = deck.pop()
-    if current_card[0] != "wild":  
-        remove_from_dict(current_card)
-        break
-    else:
-        deck.insert(0, current_card)  
-
-def choose_color():
-    colors = ["red", "yellow", "green", "blue"]
-    while True:
-        chosen = input("Choose a color (red, yellow, green, blue): ").strip().lower()
-        if chosen in colors:
-            return chosen
-        print("Invalid choice! Pick a valid color.")
-
-def player_turn():
-    global current_card
-    print("\nCurrent Card:", current_card)
-    print("Your Hand:")
-    for i, card in enumerate(player_hand):
-        print(f"{i + 1}: {card}")
-
-    valid_choices = [card for card in player_hand if is_valid_play(card, current_card)]
-
-    if not valid_choices:
-        print("No valid cards! Drawing...")
-        drawn_card = draw_card(player_hand)
-        print(f"You drew: {drawn_card}")
-        if is_valid_play(drawn_card, current_card):
-            print(f"Playing drawn card: {drawn_card}")
-            player_hand.remove(drawn_card)
-            current_card = drawn_card
-        return True  
-
-    while True:
-        try:
-            choice = int(input("Choose a card to play: ")) - 1
-            if 0 <= choice < len(player_hand) and is_valid_play(player_hand[choice], current_card):
-                played_card = player_hand.pop(choice)
-                current_card = played_card
-                print(f"You played: {current_card}")
-                
-                # Handle special cards
-                if current_card[1] == "skip":
-                    print("AI's turn is skipped!")
-                    return False  
-                elif current_card[1] == "reverse":
-                    print("Reverse played! (No effect in 2-player game)")
-                elif current_card[1] == "draw_two":
-                    print("AI draws 2 cards and skips turn!")
-                    for _ in range(2):
-                        draw_card(ai_hand)
-                    return False  
-                elif current_card[1] == "wild":
-                    current_card = (choose_color(), "wild")
-                elif current_card[1] == "wild_draw_four":
-                    print("AI draws 4 cards and skips turn!")
-                    for _ in range(4):
-                        draw_card(ai_hand)
-                    current_card = (choose_color(), "wild_draw_four")
-                    return False  
-                return True  
-            else:
-                print("Invalid choice! Pick a valid card.")
-        except ValueError:
-            print("Enter a valid number.")
-
-def ai_turn():
-    global current_card
-    print("\nAI's Turn...")
-
-    valid_choices = [card for card in ai_hand if is_valid_play(card, current_card)]
-
-    if valid_choices:
-        special_cards = [card for card in valid_choices if isinstance(card[1], str)]
-        normal_cards = [card for card in valid_choices if isinstance(card[1], int)]
-        ai_choice = special_cards[0] if special_cards else normal_cards[0]
+class UNOGame:
+    def __init__(self, num_players=2):
+        self.uno_cards = { 
+            "red": {0: 1, **dict.fromkeys(range(1, 10), 2), "skip": 2, "reverse": 2, "draw_two": 2},
+            "yellow": {0: 1, **dict.fromkeys(range(1, 10), 2), "skip": 2, "reverse": 2, "draw_two": 2},
+            "green": {0: 1, **dict.fromkeys(range(1, 10), 2), "skip": 2, "reverse": 2, "draw_two": 2},
+            "blue": {0: 1, **dict.fromkeys(range(1, 10), 2), "skip": 2, "reverse": 2, "draw_two": 2},
+            "wild": {"wild": 4, "wild_draw_four": 4},
+        }
         
-        ai_hand.remove(ai_choice)
-        current_card = ai_choice
-        print(f"AI played: {current_card}")
+        self.deck = []
+        self.discard_pile = []
+        self.players = [Player(self, i) for i in range(num_players)]
+        self.current_card = None
 
-        if current_card[1] == "skip":
-            print("Your turn is skipped!")
-            return False  
-        elif current_card[1] == "reverse":
-            print("Reverse played! (No effect in 2-player game)")
-        elif current_card[1] == "draw_two":
-            print("You draw 2 cards and skip your turn!")
-            for _ in range(2):
-                draw_card(player_hand)
-            return False  
-        elif current_card[1] == "wild":
-            chosen_color = random.choice(["red", "yellow", "green", "blue"])
-            current_card = (chosen_color, "wild")
-            print(f"AI changed color to {chosen_color}")
-        elif current_card[1] == "wild_draw_four":
-            print("You draw 4 cards and skip your turn!")
-            for _ in range(4):
-                draw_card(player_hand)
-            chosen_color = random.choice(["red", "yellow", "green", "blue"])
-            current_card = (chosen_color, "wild_draw_four")
-            print(f"AI changed color to {chosen_color}")
-            return False  
-        return True  
+        self.create_deck()
+        self.shuffle_deck()
 
-    else:
-        drawn_card = draw_card(ai_hand)
-        print("AI had no valid cards and drew a card.")
-        return True  
+    def create_deck(self):
+        """Create the deck from the card dictionary."""
+        for color, cards in self.uno_cards.items():
+            for card, count in cards.items():
+                self.deck.extend([(color, card)] * count)
 
-while True:
-    if player_turn():
-        if not player_hand:
-            print("\n🎉 You win! 🎉")
-            break
-    else:
-        continue  
+    def shuffle_deck(self):
+        """Shuffle the deck and set the first card."""
+        random.shuffle(self.deck)
+        self.current_card = self.deck.pop()
+        self.discard_pile.append(self.current_card)
 
-    if ai_turn():
-        if not ai_hand:
-            print("\n🤖 AI wins! 🤖")
-            break
+    def draw_card(self, player):
+        """Draw a card for a player."""
+        if not self.deck:  # If deck is empty, shuffle discard pile into deck
+            print("Deck is empty! Shuffling discard pile back into the deck...")
+            top_card = self.discard_pile[-1]  # Keep the top card from the discard pile
+            self.deck.extend(self.discard_pile[:-1])  # Add all but the top card
+            random.shuffle(self.deck)
+            self.discard_pile.clear()  # Clear the discard pile
+            self.discard_pile.append(top_card)  # Keep the top card
+            print(f"Top card from discard pile is now: {top_card}")
+        
+        card = self.deck.pop()
+        player.hand.append(card)
+        print(f"{player.name} drew a card: {card}")
+        return card
+
+    def is_valid_play(self, card):
+        """Check if a card can be played based on the current card."""
+        return card[0] == self.current_card[0] or card[1] == self.current_card[1] or card[0] == "wild"
+
+    def play_turn(self, player):
+        """Handle a player's turn."""
+        print(f"\n{player.name}'s Turn...")
+        print(f"Current card: {self.current_card}")
+        print(f"Your hand: {player.hand}")
+
+        valid_choices = [card for card in player.hand if self.is_valid_play(card)]
+
+        if valid_choices:
+            card_to_play = player.choose_card(valid_choices)
+            player.hand.remove(card_to_play)
+            self.current_card = card_to_play
+            self.discard_pile.append(card_to_play)
+            print(f"{player.name} played: {card_to_play}")
+
+            # Handle special cards (Skip, Reverse, Draw Two, Wild)
+            self.handle_special_cards(player, card_to_play)
+        else:
+            print(f"No valid cards! {player.name} draws a card...")
+            self.draw_card(player)
+
+    def handle_special_cards(self, player, card):
+        """Handle the effects of special cards."""
+        if card[1] == "skip":
+            print(f"{player.name} played a Skip! Skipping next player.")
+        elif card[1] == "reverse":
+            print(f"{player.name} played a Reverse!")
+        elif card[1] == "draw_two":
+            print(f"{player.name} played Draw Two! The next player draws 2 cards.")
+        elif card[1] == "wild":
+            chosen_color = player.choose_color()
+            self.current_card = (chosen_color, "wild")
+            print(f"{player.name} played a Wild card! Chose color {chosen_color}.")
+        elif card[1] == "wild_draw_four":
+            chosen_color = player.choose_color()
+            self.current_card = (chosen_color, "wild_draw_four")
+            print(f"{player.name} played Wild Draw Four! Chose color {chosen_color}.")
+            # Next player draws 4 cards
+            self.draw_card(self.players[(player.id + 1) % len(self.players)])
+            self.draw_card(self.players[(player.id + 1) % len(self.players)])
+
+    def play_game(self):
+        """Run the game loop."""
+        turn = 0
+        while True:
+            current_player = self.players[turn % len(self.players)]
+            self.play_turn(current_player)
+
+            # Check for winner (if any player has no cards left)
+            if len(current_player.hand) == 0:
+                print(f"\n{current_player.name} has won the game!")
+                break
+
+            turn += 1
+
+
+class Player:
+    def __init__(self, game, player_id):
+        self.game = game
+        self.id = player_id
+        self.name = f"Player {player_id + 1}" if player_id == 0 else f"AI {player_id + 1}"
+        self.hand = [self.game.draw_card(self) for _ in range(7)]
+
+    def choose_card(self, valid_choices):
+        """Choose a card to play (AI or player)."""
+        if self.name.startswith("Player"):
+            while True:
+                try:
+                    choice = int(input(f"Choose a card to play (1-{len(valid_choices)}): ")) - 1
+                    if 0 <= choice < len(valid_choices):
+                        return valid_choices[choice]
+                    else:
+                        print("Invalid choice. Please choose a valid card.")
+                except ValueError:
+                    print("Please enter a valid number.")
+        else:
+            # AI chooses a card randomly for now
+            return random.choice(valid_choices)
+
+    def choose_color(self):
+        """Choose a color for wild cards."""
+        while True:
+            chosen_color = input("Choose a color (red, yellow, green, blue): ").strip().lower()
+            if chosen_color in ["red", "yellow", "green", "blue"]:
+                return chosen_color
+            print("Invalid color. Please choose a valid color.")
+
+
+# Start the game
+game = UNOGame(num_players=2)  # 2 players (can be increased for more)
+game.play_game()

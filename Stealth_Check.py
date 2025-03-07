@@ -48,3 +48,63 @@ elif stealth_proficiency == "y":
     stealth_check += proficiency_bonus
 
 print(f"Your stealth check is {stealth_check}.")
+
+try:
+    enemy_stat_block = input("Do you know the enemy's stat block? (Y/N)").lower().strip()
+except ValueError:
+    print("Invalid input. Please enter Y pr N.")
+
+if enemy_stat_block == "n":
+    try:
+        enemy_challenge_rating = float(input("What is the challenge rating of the enemy? ").strip())
+
+        if enemy_challenge_rating == 0:
+            enemy_bonus = 2
+        elif enemy_challenge_rating > 0:
+            enemy_bonus = math.ceil(enemy_challenge_rating / 4) + 1
+        else:
+            print("Invalid input for challenge rating.")
+            exit()
+    except ValueError:
+        print("Invalid input. Please enter a number for the challenge rating.")
+        exit()
+
+    enemy_check = random.randint(1, 20)
+
+    try:
+        dm = input("Do you know the enemy's wisdom modifier? (Y/N) ").lower().strip()
+
+        if dm == "y":
+            try:
+                enemy_wisdom = int(input("What is the enemy's wisdom modifier? ").strip())
+            except ValueError:
+                print("Invalid input. Please enter a number for the wisdom modifier.")
+                exit()
+        elif dm == "n":
+            try:
+                enemy_wisdom = int(input("What is your enemy's wisdom score? ").strip())
+                enemy_wisdom = (enemy_wisdom - 10) // 2
+            except ValueError:
+                print("Invalid input. Please enter a number for the wisdom score.")
+                exit()
+        else:
+            print("Invalid input for wisdom modifier.")
+            exit()
+    except ValueError:
+        print("Invalid input. Please enter a number for the wisdom modifier.")
+        exit()
+
+    enemy_perception = enemy_check + enemy_wisdom + enemy_bonus
+
+    print(f"The enemy rolled a {enemy_check} and the enemy's perception check is {enemy_perception}.")
+elif enemy_stat_block == "y":
+    try:
+        enemy_perception = int(input("What is the enemy's perception check? ").strip())
+    except ValueError:
+        print("Invalid input. Please enter a number for the perception check.")
+        exit()
+
+if stealth_check > enemy_perception:
+    print("You are hidden from the enemy.")
+else:
+    print("You failed the stealth check.")

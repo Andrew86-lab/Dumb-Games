@@ -24,13 +24,13 @@ if stealth_proficiency == "y":
 user_dexterity = 0
 if user_input == "y":
     try:
-        user_dexterity = int(input("What is your character's dexterity modifier? ")).strip()
+        user_dexterity = int(input("What is your character's dexterity modifier? ").strip())
     except ValueError:
         print("Invalid input. Please enter a number for the dexterity modifier.")
         exit()
 elif user_input == "n":
     try:
-        dex_score = int(input("What is your character's dexterity score? ")).strip()
+        dex_score = int(input("What is your character's dexterity score? ").strip())
         user_dexterity = (dex_score - 10) // 2
     except ValueError:
         print("Invalid input. Please enter a number for the dexterity score.")
@@ -43,8 +43,8 @@ print(f"You rolled a {dice}")
 
 stealth_check = dice + user_dexterity
 if stealth_expertise == "y":
-    stealth_check += (proficiency_bonus[user_level] * 2)
+    stealth_check += (proficiency_bonus * 2)
 elif stealth_proficiency == "y":
-    stealth_check += proficiency_bonus[user_level]
+    stealth_check += proficiency_bonus
 
 print(f"Your stealth check is {stealth_check}.")

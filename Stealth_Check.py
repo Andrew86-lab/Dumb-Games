@@ -49,10 +49,10 @@ elif stealth_proficiency == "y":
 
 print(f"Your stealth check is {stealth_check}.")
 
-try:
-    enemy_stat_block = input("Do you know the enemy's stat block? (Y/N)").lower().strip()
-except ValueError:
-    print("Invalid input. Please enter Y pr N.")
+enemy_stat_block = input("Do you know the enemy's stat block? (Y/N)").lower().strip()
+if enemy_stat_block not in ['y', 'n']:
+    print("Invalid input for stat block. Please enter 'Y' or 'N'.")
+    exit()
 
 if enemy_stat_block == "n":
     try:

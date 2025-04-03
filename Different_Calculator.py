@@ -10,6 +10,8 @@ metric_conversion = {
     "Milli" : 1000
 }
 
+base_unit = input("Enter the base unit (e.g., Meter, Liter, Gram): ").split().lower()
+
 def get_float(prompt):
     while True:
         try:

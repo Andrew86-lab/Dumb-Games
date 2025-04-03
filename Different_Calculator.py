@@ -1,5 +1,15 @@
 import math
 
+metric_conversion = {
+    "Kilo" : .001,
+    "Hecto" : .01,
+    "Deca" : .1,
+    "Base" : 1,
+    "Deci" : 10,
+    "Centi" : 100,
+    "Milli" : 1000
+}
+
 def get_float(prompt):
     while True:
         try:

@@ -1,6 +1,5 @@
 import math
 
-# Extended metric prefix conversion factors
 metric_conversion = {
     "yotta": 1e24,
     "zetta": 1e21,

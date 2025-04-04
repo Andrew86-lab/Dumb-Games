@@ -1,4 +1,3 @@
-import math
 import time
 print("""This is the Health Calculator.
 Enter numbers only unless instructed otherwise.

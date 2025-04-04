@@ -1,13 +1,28 @@
 import math
 
+# Extended metric prefix conversion factors
 metric_conversion = {
-    "kilo": 0.001,
-    "hecto": 0.01,
-    "deca": 0.1,
+    "yotta": 1e24,
+    "zetta": 1e21,
+    "exa": 1e18,
+    "peta": 1e15,
+    "tera": 1e12,
+    "giga": 1e9,
+    "mega": 1e6,
+    "kilo": 1e3,
+    "hecto": 1e2,
+    "deca": 1e1,
     "base": 1,
-    "deci": 10,
-    "centi": 100,
-    "milli": 1000
+    "deci": 1e-1,
+    "centi": 1e-2,
+    "milli": 1e-3,
+    "micro": 1e-6,
+    "nano": 1e-9,
+    "pico": 1e-12,
+    "femto": 1e-15,
+    "atto": 1e-18,
+    "zepto": 1e-21,
+    "yocto": 1e-24
 }
 
 base_units = ["meter", "liter", "gram"]
@@ -18,17 +33,18 @@ while True:
         break
     print("Invalid base unit. Please enter 'Meter', 'Liter', or 'Gram'.")
 
-from_prefix = input("Enter the unit you're converting from (Kilo, Hecto, Deca, Base, Deci, Centi, Milli): ").strip().lower()
-to_prefix = input("Enter the unit you're converting to (Kilo, Hecto, Deca, Base, Deci, Centi, Milli): ").strip().lower()
+from_prefix = input("Enter the unit you're converting from (e.g., Kilo, Mega, Micro, Milli, Base): ").strip().lower()
+to_prefix = input("Enter the unit you're converting to (e.g., Giga, Centi, Nano, Base): ").strip().lower()
 value = float(input("Enter the value to convert: "))
 
 if from_prefix in metric_conversion and to_prefix in metric_conversion:
-    base_value = value / metric_conversion[from_prefix]
-    converted_value = base_value * metric_conversion[to_prefix]
+    base_value = value * metric_conversion[from_prefix]
+    converted_value = base_value / metric_conversion[to_prefix]
 
     print(f"{value} {from_prefix.capitalize()}{base_unit} is equal to {converted_value} {to_prefix.capitalize()}{base_unit}")
 else:
     print("Invalid unit entered. Please enter a valid metric prefix.")
+
 
 
 def get_float(prompt):

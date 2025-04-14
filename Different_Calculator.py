@@ -15,12 +15,16 @@ def metric_conversion_prompt():
         "deci": 1e-1, "centi": 1e-2, "milli": 1e-3, "micro": 1e-6, "nano": 1e-9, "pico": 1e-12, "femto": 1e-15, "atto": 1e-18, "zepto": 1e-21, "yocto": 1e-24
     }
     
-    imperial_conversion = {
+    imperial_conversion_weight = {
         "kg_to_lb": 2.20462, "lb_to_kg": 1 / 2.20462, "g_to_oz": 0.035274, "oz_to_g": 1 / 0.035274,
         "m_to_ft": 3.28084, "ft_to_m": 1 / 3.28084, "cm_to_in": 0.393701, "in_to_cm": 1 / 0.393701,
         "l_to_gal": 0.264172, "gal_to_l": 1 / 0.264172, "ml_to_floz": 0.033814, "floz_to_ml": 1 / 0.033814
     }
     
+    imperial_conversion_measuerements = {
+        
+    }
+
     if conversion_type == "metric":
         from_prefix = input("Enter the unit you're converting from (e.g., Kilo, Mega, Micro, Milli, Base): ").strip().lower()
         to_prefix = input("Enter the unit you're converting to (e.g., Giga, Centi, Nano, Base): ").strip().lower()

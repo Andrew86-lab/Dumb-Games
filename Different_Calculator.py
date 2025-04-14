@@ -72,14 +72,27 @@ imperial_conversion_volume = {
     "cup_to_floz": 8, "floz_to_cup": 1 / 8
 }
 
-def convert_volume(value, from_unit: str, to_unit: str):
-    key = f"{from_unit}_to_{to_unit}"
-    reverse_key = f"{to_unit}_to_{from_unit}"
-    if key in imperial_conversion_volume:
-        return value * imperial_conversion_volume[key]
-    elif reverse_key in imperial_conversion_volume:
-        return value / imperial_conversion_volume[reverse_key]
-    raise ValueError(f"Unsupported volume conversion from '{from_unit}' to '{to_unit}'.")
+imperial_conversion_volume = {
+    # Metric ↔ US Imperial
+    "l_to_gal": 0.264172, "gal_to_l": 1 / 0.264172,
+    "ml_to_floz": 0.033814, "floz_to_ml": 1 / 0.033814,
+    "l_to_ml": 1000, "ml_to_l": 1 / 1000,
+
+    # Larger Imperial Conversions
+    "gal_to_qt": 4, "qt_to_gal": 1 / 4,
+    "qt_to_pint": 2, "pint_to_qt": 1 / 2,
+    "pint_to_cup": 2, "cup_to_pint": 1 / 2,
+    "cup_to_floz": 8, "floz_to_cup": 1 / 8,
+
+    # Fluid Ounce ↔ Tablespoon ↔ Teaspoon (US)
+    "floz_to_tbsp": 2, "tbsp_to_floz": 1 / 2,
+    "tbsp_to_tsp": 3, "tsp_to_tbsp": 1 / 3,
+    "floz_to_tsp": 6, "tsp_to_floz": 1 / 6,
+
+    # Metric ↔ Teaspoon/Tablespoon (US standard)
+    "ml_to_tsp": 0.202884, "tsp_to_ml": 1 / 0.202884,
+    "ml_to_tbsp": 0.067628, "tbsp_to_ml": 1 / 0.067628
+}
 
 def convert_time(value, from_unit: str, to_unit: str):
     time_conversion = {

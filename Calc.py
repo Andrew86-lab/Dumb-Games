@@ -75,7 +75,6 @@ while True:
         
         from_unit_raw, to_unit_raw = units
 
-        # Normalize units using alias mapping
         from_unit = unit_aliases.get(from_unit_raw)
         to_unit = unit_aliases.get(to_unit_raw)
 

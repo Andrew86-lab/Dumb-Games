@@ -16,13 +16,13 @@ imperial_conversion_mass = {
     "g_stone": 1 / 6350, "stone_g": 6350, 
     "g_lb": 1 / 453.6, "lb_g": 453.6, 
     "g_oz": 1 / 28.35, "oz_g": 28.35, 
-    "mg_tonne": , "_mg": , 
-    "mg_microgram": , "_mg": , 
-    "mg_imperial": , "_mg": , 
-    "mg_": , "_mg": , 
-    "mg_": , "_mg": , 
-    "mg_": , "_mg": , 
-    "mg_": , "_mg": ,
+    "mg_tonne": , "tonne_mg": , 
+    "mg_microgram": , "microgram_mg": , 
+    "mg_imperial ton": , "imperial ton_mg": , 
+    "mg_ton": , "ton_mg": , 
+    "mg_stone": , "stone_mg": , 
+    "mg_lb": , "lb_mg": , 
+    "mg_oz": , "oz_mg": ,
 }
 
 def convert_mass(value, from_unit: str, to_unit: str):

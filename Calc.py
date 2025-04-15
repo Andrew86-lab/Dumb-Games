@@ -16,7 +16,7 @@ imperial_conversion_mass = {
     "g_stone": 1 / 6350, "stone_g": 6350, 
     "g_lb": 1 / 453.6, "lb_g": 453.6, 
     "g_oz": 1 / 28.35, "oz_g": 28.35, 
-    "mg_tonne": , "tonne_mg": , 
+    "mg_tonne": 1 / 1e+9, "tonne_mg": 1e+9, 
     "mg_microgram": , "microgram_mg": , 
     "mg_imperial ton": , "imperial ton_mg": , 
     "mg_ton": , "ton_mg": , 

@@ -18,7 +18,7 @@ imperial_conversion_mass = {
     "g_oz": 1 / 28.35, "oz_g": 28.35, 
     "mg_tonne": , "_mg": , 
     "mg_microgram": , "_mg": , 
-    "mg_": , "_mg": , 
+    "mg_imperial": , "_mg": , 
     "mg_": , "_mg": , 
     "mg_": , "_mg": , 
     "mg_": , "_mg": , 

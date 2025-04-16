@@ -103,3 +103,95 @@ while True:
 
     except KeyError as ke:
         print(f"Conversion error: {ke}")
+
+imperial_conversion_length = {
+    "km_to_m": 1000, "m_to_km": 1 / 1000,
+    "km_to_cm": 100000, "cm_to_km": 1 / 100000,
+    "km_to_mm": 1e6, "mm_to_km": 1 / 1e6,
+    "km_to_micrometer": 1e9, "micrometer_to_km": 1 / 1e9,
+    "km_to_nanometer": 1e12, "nanometer_to_km": 1 / 1e12,
+    "km_to_mi": 1 / 1.609, "mi_to_km": 1.609,
+    "km_to_yd": 1094, "yd_to_km": 1 / 1094,
+    "km_to_ft": 3281, "ft_to_km": 1 / 3281,
+    "km_to_in": 39370, "in_to_km": 1 / 39370,
+    "km_to_nautical_mile": 1 / 1.852, "nautical_mile_to_km": 1.852,
+
+    "m_to_cm": 100, "cm_to_m": 1 / 100,
+    "m_to_mm": 1000, "mm_to_m": 1 / 1000,
+    "m_to_micrometer": 1e6, "micrometer_to_m": 1 / 1e6,
+    "m_to_nanometer": 1e9, "nanometer_to_m": 1 / 1e9,
+    "m_to_mi": 1 / 1609.34, "mi_to_m": 1609.34,
+    "m_to_yd": 1.094, "yd_to_m": 1 / 1.094,
+    "m_to_ft": 3.281, "ft_to_m": 1 / 3.281,
+    "m_to_in": 39.37, "in_to_m": 1 / 39.37,
+    "m_to_nautical_mile": 1 / 1852, "nautical_meter_to_m": 1852,
+
+    "cm_to_mm": 10, "mm_to_cm": 1 / 10,
+    "cm_to_micrometer": 1e4, "micrometer_to_cm": 1 / 1e4,
+    "cm_to_nanometer": 1e7, "nanometer_to_cm": 1 / 1e7,
+    "cm_to_mi": 1 / 160934, "mi_to_cm": 160934,
+    "cm_to_yd": 1 / 91.44, "yd_to_cm": 91.44,
+    "cm_to_ft": 1 / 30.48, "ft_to_cm": 30.48,
+    "cm_to_in": 1 / 2.54, "in_to_cm": 2.54,
+    "cm_to_nautical_mile": 1 / 185200, "nautical_mile_to_cm": 185200,
+
+    "mm_to_micrometer": 1000, "micrometer_to_mm": 1 / 1000,
+    "mm_to_nanometer": 1e6, "nanometer_to_mm": 1 / 1e6,
+    "mm_to_mi": 1 / 1.609e6, "mi_to_mm": 1.609e6,
+    "mm_to_yd": 1 / 914.4, "yd_to_mm": 914.4,
+    "mm_to_ft": 1 / 304.8, "ft_to_mm": 304.8,
+    "mm_to_in": 1 / 25.4, "in_to_mm": 25.4,
+    "mm_to_nautical_mile": 1 / 1.852e6, "nautical_mile_to_mm": 1.852e6,
+
+    "micrometer_to_nanometer": 1000, "nanometer_to_micrometer": 1 / 1000,
+    "micrometer_to_mi": 1 / 1.609e9, "mi_to_micrometer": 1.609e9,
+    "micrometer_to_yd": 1 / 9.144e5, "yd_to_micrometer": 9.144e5,
+    "micrometer_to_ft": 1 / 3.048e5, "ft_to_micrometer": 3.048e5,
+    "micrometer_to_in": 1 / 25400, "in_to_micrometer": 25400,
+    "micrometer_to_nautical_mile": 1 / 1.852e9, "nautical_mile_to_micrometer": 1.852e9,
+
+    "nanometer_to_mi": 1 / 1.609e12, "mi_to_nanometer": 1.609e12,
+    "nanometer_to_yd": 1 / 9.144e8, "yd_to_nanometer": 9.144e8,
+    "nanometer_to_ft": 1 / 3.048e8, "ft_to_nanometer": 3.048e8,
+    "nanometer_to_in": 1 / 2.54e7, "in_to_nanometer": 2.54e7,
+    "nanometer_to_nautical_mile": 1 / 1.852e12, "nautical_mile_to_nanometer": 1.852e12,
+
+    "mi_to_yd": 1760, "yd_to_mi": 1 / 1760,
+    "mi_to_ft": 5280, "ft_to_mi": 1 / 5280,
+    "mi_to_in": 63360, "in_to_mi": 1 / 63360,
+    "mi_to_nautical_mile": 1.15078, "nautical_mile_to_mi": 1 / 1.15078,
+
+    "yd_to_ft": 3, "ft_to_yd": 1 / 3,
+    "yd_to_in": 36, "in_to_yd": 1 / 36,
+    "yd_to_nautical_mile": 1 / 2025.37, "nautical_mile_to_yd": 2025.37,
+
+    "ft_to_in": 12, "in_to_ft": 1 / 12,
+    "ft_to_nautical_mile": 1 / 6076.12, "nautical_mile_to_ft": 6076.12,
+
+    "in_to_nautical_mile": 1 / 72913.4, "nautical_mile_to_in": 72913.4,
+}
+
+unit_aliases = {
+    "kiliometers": "km", "kiliometer": "km", "km": "km", 
+    
+}
+
+while True:
+    try:
+        unit = input("Enter the unit to convert from and to (e.g., km_to_m): ").strip().lower()
+        if unit not in imperial_conversion_length:
+            raise KeyError(f"Invalid conversion unit: {unit}")
+        
+        user_number_input = float(input("Enter the number to convert: ").strip())
+        if user_number_input <= 0:
+            raise ValueError(f"Number must be greater than zero, got: {user_number_input}")
+        
+        conversion = user_number_input * imperial_conversion_length[unit]
+        print(f"{user_number_input} {unit.split('_to_')[0]} is {conversion} {unit.split('_to_')[1]}")
+        break
+
+    except ValueError as ve:
+        print(f"ValueError: {ve}")
+
+    except KeyError as ke:
+        print(f"KeyError: {ke}")

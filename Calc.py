@@ -172,7 +172,7 @@ imperial_conversion_length = {
 }
 
 unit_aliases = {
-    "kiliometers": "km", "kiliometer": "km", "km": "km",
+    "kilometers": "km", "kilometer": "km", "km": "km",
     "meters": "m", "meter": "m", "m": "m",
     "centimeters": "cm", "centimeter": "cm", "cm": "cm",
     "millimeters": "mm", "millimeter": "mm", "mm": "mm",
@@ -187,20 +187,38 @@ unit_aliases = {
 
 while True:
     try:
-        unit = input("Enter the unit to convert from and to (e.g., km_to_m): ").strip().lower()
-        if unit not in imperial_conversion_length:
-            raise KeyError(f"Invalid conversion unit: {unit}")
+        units = input("Enter the units to convert from and to (e.g., 'km m' or 'kilometers to meters'): ").strip().lower().split()
+        if len(units) != 2:
+            raise ValueError("Please enter exactly two units separated by a space (e.g., 'km m').")
         
-        user_number_input = float(input("Enter the number to convert: ").strip())
+        from_unit_raw, to_unit_raw = units
+        
+        from_unit = unit_aliases.get(from_unit_raw)
+        to_unit = unit_aliases.get(to_unit_raw)
+
+        if not from_unit or not to_unit:
+            raise KeyError(f"Could not recognize unit(s): '{from_unit_raw}' or '{to_unit_raw}'.")
+        
+        conversion_key = f"{from_unit}_to_{to_unit}"
+
+        if conversion_key not in imperial_conversion_length:
+            raise KeyError(f"Conversion '{conversion_key}' not found.")
+        
+        user_number_input = float(input(f"Enter the number of {from_unit_raw} to convert: ").strip())
         if user_number_input <= 0:
-            raise ValueError(f"Number must be greater than zero, got: {user_number_input}")
+            raise ValueError("Number must be greater than zero.")
         
-        conversion = user_number_input * imperial_conversion_length[unit]
-        print(f"{user_number_input} {unit.split('_to_')[0]} is {conversion} {unit.split('_to_')[1]}")
-        break
+        conversion = user_number_input * imperial_conversion_length[conversion_key]
+
+        print(f"{user_number_input} {from_unit_raw} = {conversion} {to_unit_raw}")
+
+        again = input("Would you like to convert another value? (Y/N): ").strip().lower()
+        if again != 'y':
+            print("Thanks for using the converter! Goodbye.")
+            break
 
     except ValueError as ve:
-        print(f"ValueError: {ve}")
+        print(f"Invalid input: {ve}")
 
     except KeyError as ke:
-        print(f"KeyError: {ke}")
+        print(f"Conversion error: {ke}")

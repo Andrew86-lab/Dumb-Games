@@ -172,8 +172,17 @@ imperial_conversion_length = {
 }
 
 unit_aliases = {
-    "kiliometers": "km", "kiliometer": "km", "km": "km", 
-    
+    "kiliometers": "km", "kiliometer": "km", "km": "km",
+    "meters": "m", "meter": "m", "m": "m",
+    "centimeters": "cm", "centimeter": "cm", "cm": "cm",
+    "millimeters": "mm", "millimeter": "mm", "mm": "mm",
+    "micrometers": "micrometer", "micrometer": "micrometer",
+    "nanometers": "nanometer", "nanometer": "nanometer",
+    "miles": "mi", "mile": "mi", "mi": "mi",
+    "yards": "yd", "yard": "yd", "yd": "yd",
+    "feet": "ft", "foot": "ft", "ft": "ft",
+    "inches": "in", "inch": "in", "in": "in",
+    "nautical miles": "nautical_mile", "nautical mile": "nautical_mile", "nautical_mile": "nautical_mile"
 }
 
 while True:

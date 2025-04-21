@@ -1,108 +1,4 @@
-imperial_conversion_mass = {
-    "kg_to_g": 1000, "g_to_kg": 1 / 1000,
-    "kg_to_mg": 1e6, "mg_to_kg": 1 / 1e6,
-    "kg_to_tonne": 1 / 1000, "tonne_to_kg": 1000,
-    "kg_to_microgram": 1e9, "microgram_to_kg": 1 / 1e9,
-    "kg_to_imperial_ton": 1 / 1016, "imperial_ton_to_kg": 1016,
-    "kg_to_ton": 1 / 907.18474, "ton_to_kg": 907.18474,
-    "kg_to_stone": 1 / 6.35029, "stone_to_kg": 6.35029,
-    "kg_to_lb": 2.20462, "lb_to_kg": 1 / 2.20462,
-    "kg_to_oz": 35.274, "oz_to_kg": 1 / 35.274,
-
-    "g_to_tonne": 1 / 1e6, "tonne_to_g": 1e6,
-    "g_to_mg": 1000, "mg_to_g": 1 / 1000,
-    "g_to_microgram": 1e6, "microgram_to_g": 1 / 1e6,
-    "g_to_imperial_ton": 1 / 1.016e6, "imperial_ton_to_g": 1.016e6,
-    "g_to_ton": 1 / 907184.74, "ton_to_g": 907184.74,
-    "g_to_stone": 1 / 6350.29, "stone_to_g": 6350.29,
-    "g_to_lb": 1 / 453.592, "lb_to_g": 453.592,
-    "g_to_oz": 1 / 28.3495, "oz_to_g": 28.3495,
-
-    "mg_to_tonne": 1 / 1e9, "tonne_to_mg": 1e9,
-    "mg_to_microgram": 1000, "microgram_to_mg": 1 / 1000,
-    "mg_to_imperial_ton": 1 / 1.016e9, "imperial_ton_to_mg": 1.016e9,
-    "mg_to_ton": 1 / 9.0718474e8, "ton_to_mg": 9.0718474e8,
-    "mg_to_stone": 1 / 6.35029e6, "stone_to_mg": 6.35029e6,
-    "mg_to_lb": 1 / 453592, "lb_to_mg": 453592,
-    "mg_to_oz": 1 / 28349.5, "oz_to_mg": 28349.5,
-
-    "microgram_to_tonne": 1 / 1e12, "tonne_to_microgram": 1e12,
-    "microgram_to_imperial_ton": 1 / 1.016e12, "imperial_ton_to_microgram": 1.016e12,
-    "microgram_to_ton": 1 / 9.0718474e11, "ton_to_microgram": 9.0718474e11,
-    "microgram_to_stone": 1 / 6.35029e9, "stone_to_microgram": 6.35029e9,
-    "microgram_to_lb": 1 / 4.53592e8, "lb_to_microgram": 4.53592e8,
-    "microgram_to_oz": 1 / 2.83495e7, "oz_to_microgram": 2.83495e7,
-
-    "imperial_ton_to_tonne": 1.016, "tonne_to_imperial_ton": 1 / 1.016,
-    "imperial_ton_to_ton": 1.12, "ton_to_imperial_ton": 1 / 1.12,
-    "imperial_ton_to_stone": 160, "stone_to_imperial_ton": 1 / 160,
-    "imperial_ton_to_lb": 2240, "lb_to_imperial_ton": 1 / 2240,
-    "imperial_ton_to_oz": 35840, "oz_to_imperial_ton": 1 / 35840,
-
-    "ton_to_tonne": 0.90718474, "tonne_to_ton": 1 / 0.90718474,
-    "ton_to_stone": 142.857, "stone_to_ton": 1 / 142.857,
-    "ton_to_lb": 2000, "lb_to_ton": 1 / 2000,
-    "ton_to_oz": 32000, "oz_to_ton": 1 / 32000,
-
-    "stone_to_tonne": 1 / 157.473, "tonne_to_stone": 157.473,
-    "stone_to_lb": 14, "lb_to_stone": 1 / 14,
-    "stone_to_oz": 224, "oz_to_stone": 1 / 224,
-
-    "lb_to_tonne": 1 / 2204.62, "tonne_to_lb": 2204.62,
-    "lb_to_oz": 16, "oz_to_lb": 1 / 16,
-
-    "oz_to_tonne": 1 / 35274, "tonne_to_oz": 35274
-}
-
-unit_aliases = {
-    "grams": "g", "gram": "g", "g": "g",
-    "kilograms": "kg", "kilogram": "kg", "kgs": "kg", "kg": "kg",
-    "milligrams": "mg", "milligram": "mg", "mg": "mg",
-    "micrograms": "microgram", "microgram": "microgram",
-    "tonnes": "tonne", "tonne": "tonne",
-    "tons": "ton", "ton": "ton",
-    "imperial_tons": "imperial_ton", "imperial_ton": "imperial_ton",
-    "stones": "stone", "stone": "stone",
-    "pounds": "lb", "pound": "lb", "lbs": "lb", "lb": "lb",
-    "ounces": "oz", "ounce": "oz", "oz": "oz"
-}
-
-while True:
-    try:
-        units = input("Enter the units to convert from and to (e.g., 'kg g' or 'kilograms to grams'): ").strip().lower().split()
-        if len(units) != 2:
-            raise ValueError("Please enter exactly two units separated by a space (e.g., 'kg g').")
-        
-        from_unit_raw, to_unit_raw = units
-
-        from_unit = unit_aliases.get(from_unit_raw)
-        to_unit = unit_aliases.get(to_unit_raw)
-
-        if not from_unit or not to_unit:
-            raise KeyError(f"Could not recognize unit(s): '{from_unit_raw}' or '{to_unit_raw}'.")
-
-        conversion_key = f"{from_unit}_to_{to_unit}"
-
-        if conversion_key not in imperial_conversion_mass:
-            raise KeyError(f"Conversion '{conversion_key}' not found.")
-
-        user_number_input = float(input(f"Enter the number of {from_unit_raw} to convert: ").strip())
-        if user_number_input <= 0:
-            raise ValueError("Number must be greater than zero.")
-
-        conversion = user_number_input * imperial_conversion_mass[conversion_key]
-        print(f"{user_number_input} {from_unit_raw} = {conversion} {to_unit_raw}")
-
-        again = input("Would you like to convert another value? (y/n): ").strip().lower()
-        if again != 'y':
-            print("Thanks for using the converter! Goodbye.")
-            break
-
-    except ValueError as ve:
-        print(f"Invalid input: {ve}")
-
-    except KeyError as ke:
-        print(f"Conversion error: {ke}")
+user_input = input("Which conversion would you like to perform? (Area, Length, Mass, Energy, Frenquency, Plane Angle, Pressure, Speed, Temperature, Time, Volume): ")
 
 imperial_conversion_length = {
     "km_to_m": 1000, "m_to_km": 1 / 1000,
@@ -213,6 +109,112 @@ while True:
         print(f"{user_number_input} {from_unit_raw} = {conversion} {to_unit_raw}")
 
         again = input("Would you like to convert another value? (Y/N): ").strip().lower()
+        if again != 'y':
+            print("Thanks for using the converter! Goodbye.")
+            break
+
+    except ValueError as ve:
+        print(f"Invalid input: {ve}")
+
+    except KeyError as ke:
+        print(f"Conversion error: {ke}")
+
+imperial_conversion_mass = {
+    "kg_to_g": 1000, "g_to_kg": 1 / 1000,
+    "kg_to_mg": 1e6, "mg_to_kg": 1 / 1e6,
+    "kg_to_tonne": 1 / 1000, "tonne_to_kg": 1000,
+    "kg_to_microgram": 1e9, "microgram_to_kg": 1 / 1e9,
+    "kg_to_imperial_ton": 1 / 1016, "imperial_ton_to_kg": 1016,
+    "kg_to_ton": 1 / 907.18474, "ton_to_kg": 907.18474,
+    "kg_to_stone": 1 / 6.35029, "stone_to_kg": 6.35029,
+    "kg_to_lb": 2.20462, "lb_to_kg": 1 / 2.20462,
+    "kg_to_oz": 35.274, "oz_to_kg": 1 / 35.274,
+
+    "g_to_tonne": 1 / 1e6, "tonne_to_g": 1e6,
+    "g_to_mg": 1000, "mg_to_g": 1 / 1000,
+    "g_to_microgram": 1e6, "microgram_to_g": 1 / 1e6,
+    "g_to_imperial_ton": 1 / 1.016e6, "imperial_ton_to_g": 1.016e6,
+    "g_to_ton": 1 / 907184.74, "ton_to_g": 907184.74,
+    "g_to_stone": 1 / 6350.29, "stone_to_g": 6350.29,
+    "g_to_lb": 1 / 453.592, "lb_to_g": 453.592,
+    "g_to_oz": 1 / 28.3495, "oz_to_g": 28.3495,
+
+    "mg_to_tonne": 1 / 1e9, "tonne_to_mg": 1e9,
+    "mg_to_microgram": 1000, "microgram_to_mg": 1 / 1000,
+    "mg_to_imperial_ton": 1 / 1.016e9, "imperial_ton_to_mg": 1.016e9,
+    "mg_to_ton": 1 / 9.0718474e8, "ton_to_mg": 9.0718474e8,
+    "mg_to_stone": 1 / 6.35029e6, "stone_to_mg": 6.35029e6,
+    "mg_to_lb": 1 / 453592, "lb_to_mg": 453592,
+    "mg_to_oz": 1 / 28349.5, "oz_to_mg": 28349.5,
+
+    "microgram_to_tonne": 1 / 1e12, "tonne_to_microgram": 1e12,
+    "microgram_to_imperial_ton": 1 / 1.016e12, "imperial_ton_to_microgram": 1.016e12,
+    "microgram_to_ton": 1 / 9.0718474e11, "ton_to_microgram": 9.0718474e11,
+    "microgram_to_stone": 1 / 6.35029e9, "stone_to_microgram": 6.35029e9,
+    "microgram_to_lb": 1 / 4.53592e8, "lb_to_microgram": 4.53592e8,
+    "microgram_to_oz": 1 / 2.83495e7, "oz_to_microgram": 2.83495e7,
+
+    "imperial_ton_to_tonne": 1.016, "tonne_to_imperial_ton": 1 / 1.016,
+    "imperial_ton_to_ton": 1.12, "ton_to_imperial_ton": 1 / 1.12,
+    "imperial_ton_to_stone": 160, "stone_to_imperial_ton": 1 / 160,
+    "imperial_ton_to_lb": 2240, "lb_to_imperial_ton": 1 / 2240,
+    "imperial_ton_to_oz": 35840, "oz_to_imperial_ton": 1 / 35840,
+
+    "ton_to_tonne": 0.90718474, "tonne_to_ton": 1 / 0.90718474,
+    "ton_to_stone": 142.857, "stone_to_ton": 1 / 142.857,
+    "ton_to_lb": 2000, "lb_to_ton": 1 / 2000,
+    "ton_to_oz": 32000, "oz_to_ton": 1 / 32000,
+
+    "stone_to_tonne": 1 / 157.473, "tonne_to_stone": 157.473,
+    "stone_to_lb": 14, "lb_to_stone": 1 / 14,
+    "stone_to_oz": 224, "oz_to_stone": 1 / 224,
+
+    "lb_to_tonne": 1 / 2204.62, "tonne_to_lb": 2204.62,
+    "lb_to_oz": 16, "oz_to_lb": 1 / 16,
+
+    "oz_to_tonne": 1 / 35274, "tonne_to_oz": 35274
+}
+
+unit_aliases = {
+    "grams": "g", "gram": "g", "g": "g",
+    "kilograms": "kg", "kilogram": "kg", "kgs": "kg", "kg": "kg",
+    "milligrams": "mg", "milligram": "mg", "mg": "mg",
+    "micrograms": "microgram", "microgram": "microgram",
+    "tonnes": "tonne", "tonne": "tonne",
+    "tons": "ton", "ton": "ton",
+    "imperial_tons": "imperial_ton", "imperial_ton": "imperial_ton",
+    "stones": "stone", "stone": "stone",
+    "pounds": "lb", "pound": "lb", "lbs": "lb", "lb": "lb",
+    "ounces": "oz", "ounce": "oz", "oz": "oz"
+}
+
+while True:
+    try:
+        units = input("Enter the units to convert from and to (e.g., 'kg g' or 'kilograms to grams'): ").strip().lower().split()
+        if len(units) != 2:
+            raise ValueError("Please enter exactly two units separated by a space (e.g., 'kg g').")
+        
+        from_unit_raw, to_unit_raw = units
+
+        from_unit = unit_aliases.get(from_unit_raw)
+        to_unit = unit_aliases.get(to_unit_raw)
+
+        if not from_unit or not to_unit:
+            raise KeyError(f"Could not recognize unit(s): '{from_unit_raw}' or '{to_unit_raw}'.")
+
+        conversion_key = f"{from_unit}_to_{to_unit}"
+
+        if conversion_key not in imperial_conversion_mass:
+            raise KeyError(f"Conversion '{conversion_key}' not found.")
+
+        user_number_input = float(input(f"Enter the number of {from_unit_raw} to convert: ").strip())
+        if user_number_input <= 0:
+            raise ValueError("Number must be greater than zero.")
+
+        conversion = user_number_input * imperial_conversion_mass[conversion_key]
+        print(f"{user_number_input} {from_unit_raw} = {conversion} {to_unit_raw}")
+
+        again = input("Would you like to convert another value? (y/n): ").strip().lower()
         if again != 'y':
             print("Thanks for using the converter! Goodbye.")
             break

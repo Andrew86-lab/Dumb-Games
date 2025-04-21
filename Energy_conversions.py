@@ -68,39 +68,39 @@ unit_aliases = {
     "foot pounds": "ftlb", "foot pound": "ftlb", "foot-pounds": "ftlb", "foot-pounds": "ftlb", "ftlbs": "ftlb", "ftlb": "ftlb",
 }
 
-# while True:
-#     try:
-#         units = input("Enter the units to convert from and to (e.g., 'J kJ' or 'Joules to Kilojoules'): ").strip().lower().split()
-#         if len(units) != 2:
-#             raise ValueError("Please enter exactly two units separated by a space (e.g., 'J kJ).")
+while True:
+    try:
+        units = input("Enter the units to convert from and to (e.g., 'J kJ' or 'Joules to Kilojoules'): ").strip().lower().split()
+        if len(units) != 2:
+            raise ValueError("Please enter exactly two units separated by a space (e.g., 'J kJ).")
         
-#         from_unit_raw, to_unit_raw = units
+        from_unit_raw, to_unit_raw = units
 
-#         from_unit = unit_aliases.get(from_unit_raw)
-#         to_unit = unit_aliases.get(to_unit_raw)
+        from_unit = unit_aliases.get(from_unit_raw)
+        to_unit = unit_aliases.get(to_unit_raw)
 
-#         if not from_unit or not to_unit:
-#             raise KeyError(f"Could not recognize unit(s): '{from_unit_raw}' or '{to_unit_raw}'.")
+        if not from_unit or not to_unit:
+            raise KeyError(f"Could not recognize unit(s): '{from_unit_raw}' or '{to_unit_raw}'.")
 
-#         conversion_key = f"{from_unit}_to_{to_unit}"
+        conversion_key = f"{from_unit}_to_{to_unit}"
 
-#         if conversion_key not in conversion_energy:
-#             raise KeyError(f"Conversion '{conversion_key}' not found.")
+        if conversion_key not in conversion_energy:
+            raise KeyError(f"Conversion '{conversion_key}' not found.")
 
-#         user_number_input = float(input(f"Enter the number of {from_unit_raw} to convert: ").strip())
-#         if user_number_input <= 0:
-#             raise ValueError("Number must be greater than zero.")
+        user_number_input = float(input(f"Enter the number of {from_unit_raw} to convert: ").strip())
+        if user_number_input <= 0:
+            raise ValueError("Number must be greater than zero.")
 
-#         conversion = user_number_input * conversion_energy[conversion_key]
-#         print(f"{user_number_input} {from_unit_raw} = {conversion} {to_unit_raw}")
+        conversion = user_number_input * conversion_energy[conversion_key]
+        print(f"{user_number_input} {from_unit_raw} = {conversion} {to_unit_raw}")
 
-#         again = input("Would you like to convert another value? (y/n): ").strip().lower()
-#         if again != 'y':
-#             print("Thanks for using the converter! Goodbye.")
-#             break
+        again = input("Would you like to convert another value? (y/n): ").strip().lower()
+        if again != 'y':
+            print("Thanks for using the converter! Goodbye.")
+            break
 
-#     except ValueError as ve:
-#         print(f"Invalid input: {ve}")
+    except ValueError as ve:
+        print(f"Invalid input: {ve}")
 
-#     except KeyError as ke:
-#         print(f"Conversion error: {ke}")
+    except KeyError as ke:
+        print(f"Conversion error: {ke}")

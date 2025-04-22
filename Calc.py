@@ -1,6 +1,9 @@
 user_input = input("Which conversion would you like to perform? (Area, Length, Mass, Energy, Frenquency, Plane Angle, Pressure, Speed, Temperature, Time, Volume): ").lower()
 
-if user_input == "area":
+if user_input != user_input:
+    raise ValueError("Please enter one of the conversions given to you.")
+
+elif user_input == "area":
     print("Sorry this feature isn't available yet.")
 
 elif user_input == "length":

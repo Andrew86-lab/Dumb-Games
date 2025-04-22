@@ -27,7 +27,7 @@ elif user_input == "length":
         "m_to_yd": 1.094, "yd_to_m": 1 / 1.094,
         "m_to_ft": 3.281, "ft_to_m": 1 / 3.281,
         "m_to_in": 39.37, "in_to_m": 1 / 39.37,
-        "m_to_nautical_mile": 1 / 1852, "nautical_meter_to_m": 1852,
+        "m_to_nautical_mile": 1 / 1852, "nautical_mile_to_m": 1852,
 
         "cm_to_mm": 10, "mm_to_cm": 1 / 10,
         "cm_to_micrometer": 1e4, "micrometer_to_cm": 1 / 1e4,

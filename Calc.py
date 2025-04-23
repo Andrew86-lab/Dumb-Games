@@ -1,4 +1,4 @@
-user_input = input("Which conversion would you like to perform? (Area, Length, Mass, Energy, Frenquency, Plane Angle, Pressure, Speed, Temperature, Time, Volume): ").lower()
+user_input = input("Which conversion would you like to perform? (Area, Length, Mass, Energy, Frenquency, Plane Angle, Pressure, Speed, Temperature, Time, Volume): ").lower().strip()
 
 if user_input not in ["area", "length", "mass", "energy", "frenquency", "plane angle", "pressure", "speed", "temperature", "time", "volume"]:
     print("Please enter one of the conversions given to you.")
@@ -551,4 +551,24 @@ elif user_input == "volume":
         "Imperial_tsp_to_cubic_inch": , "cubic_inch_to_Imperial_tsp": , 
 
         "cubic_foot_to_cubic_inch": 1728, "cubic_inch_to_cubic_foot": 1 / 1728, 
+    }
+
+    unit_aliases = {
+        "gallons": "gal", "gallon": "gal", "gal": "gal",
+        "quarts": "qt", "quart": "qt", "qt": "qt",
+        "pints": "pt", "pint": "pt", "pt": "pt",
+        "cups": "c", "cup": "c", "c": "c",
+        "ounces": "oz", "ounce": "oz", "oz": "oz",
+        "tablespoons": "tbsp", "tablespoon": "tbsp", 
+        "tbsp": "tbsp",
+        "teaspoons": "tsp", "teaspoon": "tsp", 
+        "tsp": "tsp",
+        "cubic_meters": "cubic_meter", "cubic_meter": "cubic_meter", "cubic_meter": "cubic_meter", "cubic meters": "cubic_meter", "cubic meter": "cubic_meter",
+        "liters": "l", "liter": "l", "l": "l",
+        "milliliters": "ml", "milliliter": "ml", "ml": "ml",
+        "imperial_gallons": "imperial_gal", "imperial_gallon": "imperial_gal", "imperial_gal": "imperial_gal", "imperial gallons": "imperial_gal", "imperial gallon": "imperial_gal",
+        "imperial_quarts": "imperial_qt", "imperial_quart": "imperial_qt", "imperial_qt": "imperial_qt", "imperial quarts": "imperial_qt", "imperial quart": "imperial_qt",
+        "imperial_pints": "imperial_pt", "imperial_pint": "imperial_pt", "imperial_pt": "imperial_pt", "imperial pints": "imperial_pt", "imperial pint": "imperial_pt",
+        "imperial_cups": "imperial_c", "imperial_cup": "imperial_c", "imperial_c": "imperial_c", "imperial cups": "imperial_c", "imperial cup": "imperial_c",
+        
     }

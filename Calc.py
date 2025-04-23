@@ -576,10 +576,11 @@ elif user_input == "volume":
     "cubic inches": "cubic_inch", "cubic inch": "cubic_inch", "cubic_inches": "cubic_inch", "cubic_inch": "cubic_inch",
 }
 
+    print("Does not handle multi words yet.")
+    
     while True:
         try:
             units = input("Enter the units to convert from and to (e.g., 'gal qt' or 'gallons to quarts'): ").strip().lower().split()
-            units = [u for u in units if u != 'to']
 
             if len(units) != 2:
                 raise ValueError("Please enter exactly two units separated by a space (e.g., 'gal qt').")

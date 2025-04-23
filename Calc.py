@@ -553,7 +553,7 @@ elif user_input == "volume":
         "cubic_foot_to_cubic_inch": 1728, "cubic_inch_to_cubic_foot": 1 / 1728, 
     }
 
-unit_aliases = {
+    unit_aliases = {
     "gallons": "gal", "gallon": "gal", "gal": "gal",
     "quarts": "qt", "quart": "qt", "qt": "qt",
     "pints": "pt", "pint": "pt", "pt": "pt",
@@ -577,3 +577,45 @@ unit_aliases = {
     "cubic feet": "cubic_foot", "cubic foot": "cubic_foot", "cubic_feet": "cubic_foot", "cubic_foot": "cubic_foot",
     "cubic inches": "cubic_inch", "cubic inch": "cubic_inch", "cubic_inches": "cubic_inch", "cubic_inch": "cubic_inch",
 }
+
+while True:
+    try:
+        units = input("Enter the units to convert from and to (e.g., 'gal qt' or 'gallons to quarts'): ").strip().lower().split()
+        units = [u for u in units if u != 'to']
+
+        if len(units) != 2:
+            raise ValueError("Please enter exactly two units separated by a space (e.g., 'gal qt').")
+        
+        from_unit_raw, to_unit_raw = units
+
+        from_unit = unit_aliases.get(from_unit_raw)
+        to_unit = unit_aliases.get(to_unit_raw)
+
+        if not from_unit or not to_unit:
+            raise KeyError(f"Could not recognize unit(s): '{from_unit_raw}' or '{to_unit_raw}'.")
+
+        conversion_key = f"{from_unit}_to_{to_unit}"
+
+        if conversion_key not in imperial_conversion_volume:
+            raise KeyError(f"Conversion '{conversion_key}' not found.")
+
+        user_number_input = float(input(f"Enter the number of {from_unit_raw} to convert: ").strip())
+
+        if user_number_input <= 0:
+            raise ValueError("Number must be greater than zero.")
+        
+        conversion = user_number_input * imperial_conversion_volume[conversion_key]
+
+        print(f"{user_number_input} {from_unit_raw} = {conversion:.4f} {to_unit_raw}")
+
+        again = input("Would you like to convert another value? (Y/N): ").strip().lower()
+
+        if again != 'y':
+            print("Thanks for using the converter! Goodbye.")
+            break
+
+    except ValueError as ve:
+        print(f"Invalid input: {ve}")
+    
+    except KeyError as ke:
+        print(f"Conversion error: {ke}")

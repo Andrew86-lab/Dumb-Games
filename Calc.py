@@ -360,8 +360,6 @@ elif user_input == "time":
     print("Sorry this feature isn't available yet.")
 
 elif user_input == "volume":
-    print("Sorry this feature isn't available yet.")
-    
     imperial_conversion_volume = {
         "gal_to_qt": 4, "qt_to_gal": 1 / 4,
         "gal_to_pt": 8, "pt_to_gal": 1 / 8,
@@ -578,7 +576,7 @@ elif user_input == "volume":
     "cubic inches": "cubic_inch", "cubic inch": "cubic_inch", "cubic_inches": "cubic_inch", "cubic_inch": "cubic_inch",
 }
 
-while True:
+    while True:
     try:
         units = input("Enter the units to convert from and to (e.g., 'gal qt' or 'gallons to quarts'): ").strip().lower().split()
         units = [u for u in units if u != 'to']

@@ -570,5 +570,12 @@ elif user_input == "volume":
         "imperial_quarts": "imperial_qt", "imperial_quart": "imperial_qt", "imperial_qt": "imperial_qt", "imperial quarts": "imperial_qt", "imperial quart": "imperial_qt",
         "imperial_pints": "imperial_pt", "imperial_pint": "imperial_pt", "imperial_pt": "imperial_pt", "imperial pints": "imperial_pt", "imperial pint": "imperial_pt",
         "imperial_cups": "imperial_c", "imperial_cup": "imperial_c", "imperial_c": "imperial_c", "imperial cups": "imperial_c", "imperial cup": "imperial_c",
-        
+        "imperial_ounces": "imperial_oz", "imperial_ounce": "imperial_oz", "imperial_oz": "imperial_oz", "imperial ounces": "imperial_oz", "imperial ounce": "imperial_oz",
+        "imperial_tablespoons": "imperial_tbsp", "imperial_tablespoon": "imperial_tbsp", "imperial_tbsp": "imperial_tbsp", "imperial tablespoons": "imperial_tbsp", "imperial tablespoon": "imperial_tbsp",
+        "imperial_teaspoons": "imperial_tsp", "imperial_teaspoon": "imperial_tsp", "imperial_tsp": "imperial_tsp", "imperial teaspoons": "imperial_tsp", "imperial teaspoon": "imperial_tsp",
+        "imperial_cubic_meters": "imperial_cubic_meter", "imperial_cubic_meter": "imperial_cubic_meter", "imperial_cubic_meter": "imperial_cubic_meter", "imperial cubic meters": "imperial_cubic_meter", "imperial cubic meter": "imperial_cubic_meter",
+        "imperial_liters": "imperial_l", "imperial_liter": "imperial_l", "imperial_l": "imperial_l", "imperial liters": "imperial_l", "imperial liter": "imperial_l",
+        "imperial_milliliters": "imperial_ml", "imperial_milliliter": "imperial_ml", "imperial_ml": "imperial_ml", "imperial milliliters": "imperial_ml", "imperial milliliter": "imperial_ml",
+        "cubic_feet": "cubic_foot", "cubic_foot": "cubic_foot", "cubic_foot": "cubic_foot", "cubic feet": "cubic_foot", "cubic foot": "cubic_foot",
+        "cubic_inches": "cubic_inch", "cubic_inch": "cubic_inch", "cubic_inch": "cubic_inch", "cubic inches": "cubic_inch", "cubic inch": "cubic_inch",
     }

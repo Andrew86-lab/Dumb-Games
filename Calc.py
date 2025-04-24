@@ -576,7 +576,7 @@ elif user_input == "volume":
     "cubic inches": "cubic_inch", "cubic inch": "cubic_inch", "cubic_inches": "cubic_inch", "cubic_inch": "cubic_inch",
 }
 
-    print("Does not handle multi words yet.")
+    print("Does not handle multi words yet, please use underscore as spaces for multi words (e.g., 'imperial_gallons cubic_meters').")
 
     while True:
         try:

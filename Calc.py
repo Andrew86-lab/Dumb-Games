@@ -576,45 +576,49 @@ elif user_input == "volume":
     "cubic inches": "cubic_inch", "cubic inch": "cubic_inch", "cubic_inches": "cubic_inch", "cubic_inch": "cubic_inch",
 }
 
-    print("Does not handle multi words yet, please use underscore as spaces for multi words (e.g., 'imperial_gallons cubic_meters').")
+while True:
+    try:
+        raw_input_str = input("Enter the units to convert from and to (e.g., 'gallons to quarts' or 'gal qt'): ").strip().lower()
 
-    while True:
-        try:
-            units = input("Enter the units to convert from and to (e.g., 'gal qt' or 'gallons to quarts'): ").strip().lower().split()
+        if " to " in raw_input_str:
+            from_unit_raw, to_unit_raw = map(str.strip, raw_input_str.split(" to "))
+        else:
+            parts = raw_input_str.split()
+            if len(parts) < 2:
+                raise ValueError("Please enter at least two words representing units.")
+            # Try to split in half
+            mid = len(parts) // 2
+            from_unit_raw = " ".join(parts[:mid])
+            to_unit_raw = " ".join(parts[mid:])
 
-            if len(units) != 2:
-                raise ValueError("Please enter exactly two units separated by a space (e.g., 'gal qt').")
+        from_unit = unit_aliases.get(from_unit_raw)
+        to_unit = unit_aliases.get(to_unit_raw)
 
-            from_unit_raw, to_unit_raw = units
+        if not from_unit or not to_unit:
+            raise KeyError(f"Could not recognize unit(s): '{from_unit_raw}' or '{to_unit_raw}'.")
 
-            from_unit = unit_aliases.get(from_unit_raw)
-            to_unit = unit_aliases.get(to_unit_raw)
+        conversion_key = f"{from_unit}_to_{to_unit}"
 
-            if not from_unit or not to_unit:
-                raise KeyError(f"Could not recognize unit(s): '{from_unit_raw}' or '{to_unit_raw}'.")
+        if conversion_key not in imperial_conversion_volume:
+            raise KeyError(f"Conversion '{conversion_key}' not found.")
 
-            conversion_key = f"{from_unit}_to_{to_unit}"
+        user_number_input = float(input(f"Enter the number of {from_unit_raw} to convert: ").strip())
 
-            if conversion_key not in imperial_conversion_volume:
-                raise KeyError(f"Conversion '{conversion_key}' not found.")
+        if user_number_input <= 0:
+            raise ValueError("Number must be greater than zero.")
 
-            user_number_input = float(input(f"Enter the number of {from_unit_raw} to convert: ").strip())
+        conversion = user_number_input * imperial_conversion_volume[conversion_key]
 
-            if user_number_input <= 0:
-                raise ValueError("Number must be greater than zero.")
+        print(f"{user_number_input} {from_unit_raw} = {conversion:.4f} {to_unit_raw}")
 
-            conversion = user_number_input * imperial_conversion_volume[conversion_key]
+        again = input("Would you like to convert another value? (Y/N): ").strip().lower()
 
-            print(f"{user_number_input} {from_unit_raw} = {conversion:.4f} {to_unit_raw}")
+        if again != 'y':
+            print("Thanks for using the converter! Goodbye.")
+            break
 
-            again = input("Would you like to convert another value? (Y/N): ").strip().lower()
+    except ValueError as ve:
+        print(f"Invalid input: {ve}")
 
-            if again != 'y':
-                print("Thanks for using the converter! Goodbye.")
-                break
-
-        except ValueError as ve:
-            print(f"Invalid input: {ve}")
-
-        except KeyError as ke:
-            print(f"Conversion error: {ke}")
+    except KeyError as ke:
+        print(f"Conversion error: {ke}")

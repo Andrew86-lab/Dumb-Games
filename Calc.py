@@ -6,6 +6,10 @@ if user_input not in ["area", "length", "mass", "energy", "frenquency", "plane a
 elif user_input == "area":
     print("Sorry this feature isn't available yet.")
 
+    imperial_conversion_area = {
+        
+    }
+
 elif user_input == "length":
     imperial_conversion_length = {
         "km_to_m": 1000, "m_to_km": 1 / 1000,

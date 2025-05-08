@@ -1,3 +1,5 @@
+# Made by Andrew
+
 user_input = input("Which conversion would you like to perform? (Area, Length, Mass, Energy, Frenquency, Plane Angle, Pressure, Speed, Temperature, Time, Volume): ").lower().strip()
 
 if user_input not in ["area", "length", "mass", "energy", "frenquency", "plane angle", "pressure", "speed", "temperature", "time", "volume"]:
@@ -7,7 +9,40 @@ elif user_input == "area":
     print("Sorry this feature isn't available yet.")
 
     imperial_conversion_area = {
+        "square_kiloneter_to_square_meter": 1e+6, "square_meter_to_square_kilometer": 1 / 1e+6,
+        "square_kiloneter_to_square_mile": 1 / 2.59, "square_mile_to_square_kilometer": 2.59,
+        "square_kiloneter_to_square_yard": 1.196e+6, "square_yard_to_square_kilometer": 1 / 1.196e+6,
+        "square_kiloneter_to_square_foot": 1.076e+7, "square_foot_to_square_kilometer": 1 / 1.076e+7,
+        "square_kiloneter_to_square_inch": 1.55e+9, "square_inch_to_square_kilometer": 1 / 1.55e+9,
+        "square_kiloneter_to_hectare": 100, "hectare_to_square_kilometer": 1 / 100,
+        "square_kiloneter_to_acre": 247.1, "acre_to_square_kilometer": 1 / 247.1,
         
+        "square_meter_to_square_mile": 1 / 2.59e+6, "square_mile_to_square_meter": 2.59e+6,
+        "square_meter_to_square_yard": 1.196, "square_yard_to_square_meter": 1 / 1.196,
+        "square_meter_to_square_foot": 10.764, "square_foot_to_square_meter": 1 / 10.764,
+        "square_meter_to_square_inch": 1550, "square_inch_to_square_meter": 1 / 1550,
+        "square_meter_to_hectare": 1 / 10000, "hectare_to_square_meter": 10000,
+        "square_meter_to_acre": 1 / 4047, "acre_to_square_meter": 4047,
+        
+        "square_mile_to_square_yard": 3.098e+6, "square_yard_to_square_mile": 1 / 3.098e+6,
+        "square_mile_to_square_foot": 2.788e+7, "square_foot_to_square_mile": 1 / 2.788e+7,
+        "square_mile_to_square_inch": 4.014e+9, "square_inch_to_square_mile": 1 / 4.014e+9,
+        "square_mile_to_hectare": 259, "hectare_to_square_mile": 1 / 259,
+        "square_mile_to_acre": 640, "acre_to_square_mile": 1 / 640,
+        
+        "square_yard_to_square_foot": 9, "square_foot_to_square_yard": 1 / 9,
+        "square_yard_to_square_inch": 1296, "square_inch_to_square_yard": 1 / 1296,
+        "square_yard_to_hectare": 1 / 11960, "hectare_to_square_yard": 11960,
+        "square_yard_to_acre": 1 / 4840, "acre_to_square_yard": 4840,
+        
+        "square_foot_to_square_inch": 144, "square_inch_to_square_foot": 1 / 144,
+        "square_foot_to_hectare": 1 / 107600, "hectare_to_square_foot": 107600,
+        "square_foot_to_acre": 1 / 43560, "acre_to_square_foot": 43560,
+        
+        "square_inch_to_hectare": 1 / 1.55e+7, "hectare_to_square_inch": 1.55e+7,
+        "square_inch_to_acre": 1 / 6.273e+6, "acre_to_square_inch": 6.273e+6,
+        
+        "hectare_to_acre": 2.471, "acre_to_hectare": 1 / 2.471,
     }
 
 elif user_input == "length":

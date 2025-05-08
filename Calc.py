@@ -9,41 +9,42 @@ elif user_input == "area":
     print("Sorry this feature isn't available yet.")
 
     imperial_conversion_area = {
-        "square_kiloneter_to_square_meter": 1e+6, "square_meter_to_square_kilometer": 1 / 1e+6,
-        "square_kiloneter_to_square_mile": 1 / 2.59, "square_mile_to_square_kilometer": 2.59,
-        "square_kiloneter_to_square_yard": 1.196e+6, "square_yard_to_square_kilometer": 1 / 1.196e+6,
-        "square_kiloneter_to_square_foot": 1.076e+7, "square_foot_to_square_kilometer": 1 / 1.076e+7,
-        "square_kiloneter_to_square_inch": 1.55e+9, "square_inch_to_square_kilometer": 1 / 1.55e+9,
-        "square_kiloneter_to_hectare": 100, "hectare_to_square_kilometer": 1 / 100,
-        "square_kiloneter_to_acre": 247.1, "acre_to_square_kilometer": 1 / 247.1,
+        "km^2_to_m^2": 1e+6, "m^2_to_km^2": 1 / 1e+6,
+        "km^2_to_mi^2": 1 / 2.59, "mi^2_to_km^2": 2.59,
+        "km^2_to_yd^2": 1.196e+6, "yd^2_to_km^2": 1 / 1.196e+6,
+        "km^2_to_ft^2": 1.076e+7, "ft^2_to_km^2": 1 / 1.076e+7,
+        "km^2_to_in^2": 1.55e+9, "in^2_to_km^2": 1 / 1.55e+9,
+        "km^2_to_ha": 100, "ha_to_km^2": 1 / 100,
+        "km^2_to_ac": 247.1, "ac_to_km^2": 1 / 247.1,
         
-        "square_meter_to_square_mile": 1 / 2.59e+6, "square_mile_to_square_meter": 2.59e+6,
-        "square_meter_to_square_yard": 1.196, "square_yard_to_square_meter": 1 / 1.196,
-        "square_meter_to_square_foot": 10.764, "square_foot_to_square_meter": 1 / 10.764,
-        "square_meter_to_square_inch": 1550, "square_inch_to_square_meter": 1 / 1550,
-        "square_meter_to_hectare": 1 / 10000, "hectare_to_square_meter": 10000,
-        "square_meter_to_acre": 1 / 4047, "acre_to_square_meter": 4047,
+        "m^2_to_mi^2": 1 / 2.59e+6, "mi^2_to_m^2": 2.59e+6,
+        "m^2_to_yd^2": 1.196, "yd^2_to_m^2": 1 / 1.196,
+        "m^2_to_ft^2": 10.764, "ft^2_to_m^2": 1 / 10.764,
+        "m^2_to_in^2": 1550, "in^2_to_m^2": 1 / 1550,
+        "m^2_to_ha": 1 / 10000, "ha_to_m^2": 10000,
+        "m^2_to_ac": 1 / 4047, "ac_to_m^2": 4047,
         
-        "square_mile_to_square_yard": 3.098e+6, "square_yard_to_square_mile": 1 / 3.098e+6,
-        "square_mile_to_square_foot": 2.788e+7, "square_foot_to_square_mile": 1 / 2.788e+7,
-        "square_mile_to_square_inch": 4.014e+9, "square_inch_to_square_mile": 1 / 4.014e+9,
-        "square_mile_to_hectare": 259, "hectare_to_square_mile": 1 / 259,
-        "square_mile_to_acre": 640, "acre_to_square_mile": 1 / 640,
+        "mi^2_to_yd^2": 3.098e+6, "yd^2_to_mi^2": 1 / 3.098e+6,
+        "mi^2_to_ft^2": 2.788e+7, "ft^2_to_mi^2": 1 / 2.788e+7,
+        "mi^2_to_in^2": 4.014e+9, "in^2_to_mi^2": 1 / 4.014e+9,
+        "mi^2_to_ha": 259, "ha_to_mi^2": 1 / 259,
+        "mi^2_to_ac": 640, "ac_to_mi^2": 1 / 640,
         
-        "square_yard_to_square_foot": 9, "square_foot_to_square_yard": 1 / 9,
-        "square_yard_to_square_inch": 1296, "square_inch_to_square_yard": 1 / 1296,
-        "square_yard_to_hectare": 1 / 11960, "hectare_to_square_yard": 11960,
-        "square_yard_to_acre": 1 / 4840, "acre_to_square_yard": 4840,
+        "yd^2_to_ft^2": 9, "ft^2_to_yd^2": 1 / 9,
+        "yd^2_to_in^2": 1296, "in^2_to_yd^2": 1 / 1296,
+        "yd^2_to_ha": 1 / 11960, "ha_to_yd^2": 11960,
+        "yd^2_to_ac": 1 / 4840, "ac_to_yd^2": 4840,
         
-        "square_foot_to_square_inch": 144, "square_inch_to_square_foot": 1 / 144,
-        "square_foot_to_hectare": 1 / 107600, "hectare_to_square_foot": 107600,
-        "square_foot_to_acre": 1 / 43560, "acre_to_square_foot": 43560,
+        "ft^2_to_in^2": 144, "in^2_to_ft^2": 1 / 144,
+        "ft^2_to_ha": 1 / 107600, "ha_to_ft^2": 107600,
+        "ft^2_to_ac": 1 / 43560, "ac_to_ft^2": 43560,
         
-        "square_inch_to_hectare": 1 / 1.55e+7, "hectare_to_square_inch": 1.55e+7,
-        "square_inch_to_acre": 1 / 6.273e+6, "acre_to_square_inch": 6.273e+6,
+        "in^2_to_ha": 1 / 1.55e+7, "ha_to_in^2": 1.55e+7,
+        "in^2_to_ac": 1 / 6.273e+6, "ac_to_in^2": 6.273e+6,
         
-        "hectare_to_acre": 2.471, "acre_to_hectare": 1 / 2.471,
+        "ha_to_ac": 2.471, "ac_to_ha": 1 / 2.471,
     }
+
 
 elif user_input == "length":
     imperial_conversion_length = {

@@ -55,6 +55,52 @@ elif user_input == "area":
         "hectare": "ha", "hectares": "ha", "ha": "ha",
         "acre": "ac", "acres": "ac", "ac": "ac"
     }
+
+    while True:
+        try:
+            raw_input_str = input("Enter the unit to convert from and to (e.g., 'km^2 m^2' or 'Square Kilometers to Square Meters'): ").strip().lower()
+            
+            if " to " in raw_input_str:
+                from_unit_raw, to_unit_raw = map(str.strip, raw_input_str.split(" to "))
+            else:
+                parts = raw_input_str.split()
+                if len(parts) < 2:
+                    raise ValueError("Please enter at least two words representing units (e.g., 'km^2 m^2' 'Square_Kilometer Square_meter' or multi words use 'to' to separate them 'Square Kilometer to Square meter').")
+                mid = len(parts) // 2
+                from_unit_raw = " ".join(parts[:mid])
+                to_unit_raw = " ".join(parts[mid:])
+
+            from_unit = unit_aliases.get(from_unit_raw)
+            to_unit = unit_aliases.get(to_unit_raw)
+
+            if not from_unit or not to_unit:
+                raise KeyError(f"Could not recognize unit(s): '{from_unit_raw}' or '{to_unit_raw}'.")
+
+            conversion_key = f"{from_unit}_to_{to_unit}"
+
+            if conversion_key not in imperial_conversion_area:
+                raise KeyError(f"Conversion '{conversion_key}' not found.")
+            
+            user_number_input = float(input(f"Enter the number of {from_unit_raw} to convert: ").strip())
+
+            if user_number_input <= 0:
+                raise ValueError("Number must be greater than zero.")
+            
+            conversion = user_number_input * imperial_conversion_area[conversion_key]
+
+            print(f"{user_number_input} {from_unit_raw} = {conversion} {to_unit_raw}")
+
+            again = input("Would you like to convert another value? (Y/N): ").strip().lower()
+
+            if again != 'y':
+                print("Thanks for using the converter! Goodbye.")
+                break
+        except ValueError as ve:
+            print(f"Invalid input: {ve}")
+        
+        except KeyError as ke:
+            print(f"Conversion error: {ke}")
+
 elif user_input == "length":
     imperial_conversion_length = {
         "km_to_m": 1000, "m_to_km": 1 / 1000,
@@ -634,8 +680,7 @@ elif user_input == "volume":
             else:
                 parts = raw_input_str.split()
                 if len(parts) < 2:
-                    raise ValueError("Please enter at least two words representing units.")
-                # Try to split in half
+                    raise ValueError("Please enter at least two words representing units (e.g., 'gal qt' 'gallon quart' or multi words use 'to' to separate them 'Imperial Quart to Imperial Gallon').")
                 mid = len(parts) // 2
                 from_unit_raw = " ".join(parts[:mid])
                 to_unit_raw = " ".join(parts[mid:])

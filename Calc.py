@@ -45,7 +45,16 @@ elif user_input == "area":
         "ha_to_ac": 2.471, "ac_to_ha": 1 / 2.471,
     }
 
-
+    unit_aliases = {
+        "square kilometer": "km^2", "square kilometers": "km^2", "square_kilometer": "km^2", "square_kilometers": "km^2", "km^2": "km^2",
+        "square meter": "m^2", "square meters": "m^2", "square_meter": "m^2", "square_meters": "m^2", "m^2": "m^2",
+        "square mile": "mi^2", "square miles": "mi^2", "square_mile": "mi^2", "square_miles": "mi^2", "mi^2": "mi^2",
+        "square yard": "yd^2", "square yards": "yd^2", "square_yard": "yd^2", "square_yards": "yd^2", "yd^2": "yd^2",
+        "square foot": "ft^2", "square foots": "ft^2", "square_foot": "ft^2", "square_foots": "ft^2", "ft^2": "ft^2",
+        "square inch": "in^2", "square inchs": "in^2", "square_inch": "in^2", "square_inchs": "in^2", "in^2": "in^2",
+        "hectare": "ha", "hectares": "ha", "ha": "ha",
+        "acre": "ac", "acres": "ac", "ac": "ac"
+    }
 elif user_input == "length":
     imperial_conversion_length = {
         "km_to_m": 1000, "m_to_km": 1 / 1000,

@@ -6,7 +6,6 @@ if user_input not in ["area", "length", "mass", "energy", "frenquency", "plane a
     print("Please enter one of the conversions given to you.")
 
 elif user_input == "area":
-    print("Sorry this feature isn't available yet.")
 
     imperial_conversion_area = {
         "km^2_to_m^2": 1e+6, "m^2_to_km^2": 1 / 1e+6,

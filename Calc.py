@@ -1,14 +1,104 @@
+# Made by Andrew
+
 user_input = input("Which conversion would you like to perform? (Area, Length, Mass, Energy, Frenquency, Plane Angle, Pressure, Speed, Temperature, Time, Volume): ").lower().strip()
 
 if user_input not in ["area", "length", "mass", "energy", "frenquency", "plane angle", "pressure", "speed", "temperature", "time", "volume"]:
     print("Please enter one of the conversions given to you.")
 
 elif user_input == "area":
-    print("Sorry this feature isn't available yet.")
 
     imperial_conversion_area = {
+        "km^2_to_m^2": 1e+6, "m^2_to_km^2": 1 / 1e+6,
+        "km^2_to_mi^2": 1 / 2.59, "mi^2_to_km^2": 2.59,
+        "km^2_to_yd^2": 1.196e+6, "yd^2_to_km^2": 1 / 1.196e+6,
+        "km^2_to_ft^2": 1.076e+7, "ft^2_to_km^2": 1 / 1.076e+7,
+        "km^2_to_in^2": 1.55e+9, "in^2_to_km^2": 1 / 1.55e+9,
+        "km^2_to_ha": 100, "ha_to_km^2": 1 / 100,
+        "km^2_to_ac": 247.1, "ac_to_km^2": 1 / 247.1,
         
+        "m^2_to_mi^2": 1 / 2.59e+6, "mi^2_to_m^2": 2.59e+6,
+        "m^2_to_yd^2": 1.196, "yd^2_to_m^2": 1 / 1.196,
+        "m^2_to_ft^2": 10.764, "ft^2_to_m^2": 1 / 10.764,
+        "m^2_to_in^2": 1550, "in^2_to_m^2": 1 / 1550,
+        "m^2_to_ha": 1 / 10000, "ha_to_m^2": 10000,
+        "m^2_to_ac": 1 / 4047, "ac_to_m^2": 4047,
+        
+        "mi^2_to_yd^2": 3.098e+6, "yd^2_to_mi^2": 1 / 3.098e+6,
+        "mi^2_to_ft^2": 2.788e+7, "ft^2_to_mi^2": 1 / 2.788e+7,
+        "mi^2_to_in^2": 4.014e+9, "in^2_to_mi^2": 1 / 4.014e+9,
+        "mi^2_to_ha": 259, "ha_to_mi^2": 1 / 259,
+        "mi^2_to_ac": 640, "ac_to_mi^2": 1 / 640,
+        
+        "yd^2_to_ft^2": 9, "ft^2_to_yd^2": 1 / 9,
+        "yd^2_to_in^2": 1296, "in^2_to_yd^2": 1 / 1296,
+        "yd^2_to_ha": 1 / 11960, "ha_to_yd^2": 11960,
+        "yd^2_to_ac": 1 / 4840, "ac_to_yd^2": 4840,
+        
+        "ft^2_to_in^2": 144, "in^2_to_ft^2": 1 / 144,
+        "ft^2_to_ha": 1 / 107600, "ha_to_ft^2": 107600,
+        "ft^2_to_ac": 1 / 43560, "ac_to_ft^2": 43560,
+        
+        "in^2_to_ha": 1 / 1.55e+7, "ha_to_in^2": 1.55e+7,
+        "in^2_to_ac": 1 / 6.273e+6, "ac_to_in^2": 6.273e+6,
+        
+        "ha_to_ac": 2.471, "ac_to_ha": 1 / 2.471,
     }
+
+    unit_aliases = {
+        "square kilometer": "km^2", "square kilometers": "km^2", "square_kilometer": "km^2", "square_kilometers": "km^2", "km^2": "km^2",
+        "square meter": "m^2", "square meters": "m^2", "square_meter": "m^2", "square_meters": "m^2", "m^2": "m^2",
+        "square mile": "mi^2", "square miles": "mi^2", "square_mile": "mi^2", "square_miles": "mi^2", "mi^2": "mi^2",
+        "square yard": "yd^2", "square yards": "yd^2", "square_yard": "yd^2", "square_yards": "yd^2", "yd^2": "yd^2",
+        "square foot": "ft^2", "square foots": "ft^2", "square_foot": "ft^2", "square_foots": "ft^2", "ft^2": "ft^2",
+        "square inch": "in^2", "square inchs": "in^2", "square_inch": "in^2", "square_inchs": "in^2", "in^2": "in^2",
+        "hectare": "ha", "hectares": "ha", "ha": "ha",
+        "acre": "ac", "acres": "ac", "ac": "ac"
+    }
+
+    while True:
+        try:
+            raw_input_str = input("Enter the unit to convert from and to (e.g., 'km^2 m^2' or 'Square Kilometers to Square Meters'): ").strip().lower()
+            
+            if " to " in raw_input_str:
+                from_unit_raw, to_unit_raw = map(str.strip, raw_input_str.split(" to "))
+            else:
+                parts = raw_input_str.split()
+                if len(parts) < 2:
+                    raise ValueError("Please enter at least two words representing units (e.g., 'km^2 m^2' 'Square_Kilometer Square_meter' or multi words use 'to' to separate them 'Square Kilometer to Square meter').")
+                mid = len(parts) // 2
+                from_unit_raw = " ".join(parts[:mid])
+                to_unit_raw = " ".join(parts[mid:])
+
+            from_unit = unit_aliases.get(from_unit_raw)
+            to_unit = unit_aliases.get(to_unit_raw)
+
+            if not from_unit or not to_unit:
+                raise KeyError(f"Could not recognize unit(s): '{from_unit_raw}' or '{to_unit_raw}'.")
+
+            conversion_key = f"{from_unit}_to_{to_unit}"
+
+            if conversion_key not in imperial_conversion_area:
+                raise KeyError(f"Conversion '{conversion_key}' not found.")
+            
+            user_number_input = float(input(f"Enter the number of {from_unit_raw} to convert: ").strip())
+
+            if user_number_input <= 0:
+                raise ValueError("Number must be greater than zero.")
+            
+            conversion = user_number_input * imperial_conversion_area[conversion_key]
+
+            print(f"{user_number_input} {from_unit_raw} = {conversion} {to_unit_raw}")
+
+            again = input("Would you like to convert another value? (Y/N): ").strip().lower()
+
+            if again != 'y':
+                print("Thanks for using the converter! Goodbye.")
+                break
+        except ValueError as ve:
+            print(f"Invalid input: {ve}")
+        
+        except KeyError as ke:
+            print(f"Conversion error: {ke}")
 
 elif user_input == "length":
     imperial_conversion_length = {
@@ -589,8 +679,7 @@ elif user_input == "volume":
             else:
                 parts = raw_input_str.split()
                 if len(parts) < 2:
-                    raise ValueError("Please enter at least two words representing units.")
-                # Try to split in half
+                    raise ValueError("Please enter at least two words representing units (e.g., 'gal qt' 'gallon quart' or multi words use 'to' to separate them 'Imperial Quart to Imperial Gallon').")
                 mid = len(parts) // 2
                 from_unit_raw = " ".join(parts[:mid])
                 to_unit_raw = " ".join(parts[mid:])

@@ -1,4 +1,5 @@
 from mpmath import mp
+from pprint import pprint
 
 # Set precision to 50 decimal places
 mp.dps = 50
@@ -28,4 +29,4 @@ for i, target in enumerate(pi_digits):
         results.append((i + 1, target, f"Could not match digit {target} from {current} with carry {carry}"))
         break
 
-results
+pprint(results)
